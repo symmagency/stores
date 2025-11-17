@@ -338,192 +338,6 @@ $('.button_vermais').toggleClass('ver_menos');
 });
 
 
-$('.pagina-inicial .secao-banners').after(`
-
-<div id="explore">
-
-<div class="conteiner">
-<h2 class="titulo_explore">
-Explore por plataforma
-</h2>
-
-<div class="row-fluid">
-<div class="append_items">    
-<li class="explore_item">
-<a href="https://www.thkeys.com.br/gift-xbox">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore-xbox.png" alt="">
-</a>
-</li>
-
-<li class="explore_item">
-<a href="https://www.thkeys.com.br/app-store-19852754">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore_itunes.png" alt="">
-</a>
-</li>
-
-<li class="explore_item">
-<a href="https://www.thkeys.com.br/gift-playstation">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore-playstation.png" alt="">
-</a>
-</li>
-
-<li class="explore_item">
-<a href="https://www.thkeys.com.br/pc-">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore-steam.png" alt="">
-</a>
-</li>
-
-<li class="explore_item">
-<a href="https://www.thkeys.com.br/buscar?q=FC+POINTS">
-<img src="https://cdn.awsli.com.br/2679/2679412/arquivos/explore_fc.png" alt="">
-</a>
-</li>
-
-<li class="explore_item">
-<a href="https://www.thkeys.com.br/buscar?q=fortnite">
-<img src="https://cdn.awsli.com.br/2679/2679412/arquivos/explore_fortinite.png" alt="">
-</a>
-</li>
-
-<li class="explore_item">
-<a href="https://www.thkeys.com.br/garena-free-fire-diamantes">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore_freefire.png" alt="">
-</a>
-</li>
-
-<li class="explore_item">
-<a href="https://www.thkeys.com.br/buscar?q=playstation+plus+brasil">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore_plus.png" alt="">
-</a>
-</li>
-
-<li class="explore_item">
-<a href="https://www.thkeys.com.br/nintendo">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore-nintendo.png" alt="">
-</a>
-</li>
-
-<li class="explore_item">
-<a href="https://www.thkeys.com.br/roblox?sort=%2Bpreco">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore-roblox.png" alt="">
-</a>
-</li>        
-
-<li class="explore_item">
-<a href="https://www.thkeys.com.br/google-play">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore_googleplay.png" alt="">
-</a>
-</li>
-
-</div>
-</div>
-</div>
-
-</div>
-
-`);
-
-$('#listagemProdutos .vitrine-3332079').before(`
-
-<div class="videoTrailer">
-<div class="trailer_banner">
-<a target="_blank" href="https://www.youtube.com/watch?v=O6MdexNSy3o&t=1s"><i></i> Assista ao trailer</a>
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/the-last-of-us-youtube.jpg" alt="">
-</div>
-<div class="jogo_banner">
-<a href="https://www.thkeys.com.br/the-last-of-us-part-ii-remastered-pc-codigo-digital">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/the-last-of-us-2-remastered-pc.png" alt="">
-<div class="append_preco_btn">
-<div class="preco"> R$ 189,90 <span>no pix</span></div>
-<button class="btn">Comprar agora <i></i></button>
-</div>
-</a>
-</div>
-</div>
-`);
-
-$('#rodape .institucional').after($('.span4.selos'));
-$('.span4.selos ul > li:first-child').after(`
-<li> <img alt="Loja Oficial Mercado Livre" src="https://cdn.awsli.com.br/1041/1041512/arquivos/oficial-ml.png" width="135" height="43px" /> </li>
-<li> <img alt="Google Safe Browsing" src="https://cdn.awsli.com.br/1041/1041512/arquivos/google-s-b.png"/ width="127" height="38px"> </li>
-`);
-
-//redes sociais no rodape
-$('.links-rodape-paginas').after($('#rodape .redes-sociais'));
-$('#rodape .redes-sociais').append(`
-<div id="telefoneRodape">
-<div class="tel_rp">
-<p>WhatsApp</p>
-<a href="#"><i class="fa-whatsapp"></i>(11) 5286-3976</a>
-</div>
-<div class="envio_rp">
-<p>Formas de envio</p>
-<li>
-<img src="https://cdn.awsli.com.br/2679/2679412/arquivos/envio_digital.svg" alt="Envio Digital" width="127" height="24px">
-</li>
-<li>
-<img src="https://cdn.awsli.com.br/2679/2679412/arquivos/envio_digital_vip.svg" alt="Envio Digital VIP" width="154" height="24px">
-</li>
-</div>
-<div class="pagamento_rp">
-<p>Formas de pagamento</p>
-<li>
-<img src="https://cdn.awsli.com.br/2679/2679412/arquivos/boleto.svg" alt="Boleto Bancário">
-</li>
-<li>
-<img src="https://cdn.awsli.com.br/2679/2679412/arquivos/cartao.svg" alt="Cartão de crédito">
-</li>
-<li>
-<img src="https://cdn.awsli.com.br/2679/2679412/arquivos/pix.svg" alt="Pix">
-</li>
-</div>
-</div>
-`);
-
-$('.mini-banner .modulo.span4:first-child').after(`
-<div id="porPreco">
-<div class="titulo_porpreco">
-<h2>Já sabe quanto vai gastar?</h2>
-<p>Encontre produtos por faixa de preço</p>
-</div>
-
-<div class="precos">
-<div class="preco_linha">
-<li class="porpreco_item">
-<a href="https://www.thkeys.com.br/10">R$ 10</a>
-</li>
-<li class="porpreco_item">
-<a href="https://www.thkeys.com.br/20">R$ 20</a>
-</li>
-<li class="porpreco_item">
-<a href="https://www.thkeys.com.br/30">R$ 30</a>
-</li>
-<li class="porpreco_item">
-<a href="https://www.thkeys.com.br/50">R$ 50</a>
-</li>
-</div>
-
-<div class="preco_linha">
-<li class="porpreco_item">
-<a href="https://www.thkeys.com.br/100">R$ 100</a>
-</li>
-<li class="porpreco_item">
-<a href="https://www.thkeys.com.br/150">R$ 150</a>
-</li>
-<li class="porpreco_item">
-<a href="https://www.thkeys.com.br/200">R$ 200</a>
-</li>
-<li class="porpreco_item">
-<a href="https://www.thkeys.com.br/250">R$ 250</a>
-</li>
-</div>
-</div>
-</div>
-`);
-
-$('#listagemProdutos > ul:nth-child(5)').after($('#miniBannerFullw'));
-$('#rodape .institucional .links-rodape-paginas ul').append(`<li><a href="https://blog.thkeys.com.br/" target="_blank">Blog</a></li>`);
-
 var tam = $(window).width();
 
 //só desktop
@@ -535,136 +349,6 @@ $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-chil
 $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-child').append($('.listagem.aproveite-tambem'));
 
 }
-
-$('.pagina-inicial .vitrine-3323787').before(`
-
-<div id="explore_by-cat">
-
-<div class="conteiner">
-<h2 class="titulo_explore">
-Explore por gênero
-</h2>
-
-<div class="row-fluid">
-<div class="append_items">  
-
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/acao-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-acao.svg" alt="">
-<span>Ação</span>
-</a>
-</li>
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/aventura-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-aventura.svg" alt="">
-<span>Aventura</span>
-</a>
-</li>
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/coop-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-coop.svg" alt="">
-<span>Co-op</span>
-</a>
-</li>
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/corrida-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-corrida.svg" alt="">
-<span>Corrida</span>
-</a>
-</li>
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/esporte-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-esporte.svg" alt="">
-<span>Esporte</span>
-</a>
-</li>
-
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/estrategia-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-estrategia.svg" alt="">
-<span>Estratégia</span>
-</a>
-</li>
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/fps-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-fps.svg" alt="">
-<span>FPS</span>
-</a>
-</li>
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/hack-slash-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-slash.svg" alt="">
-<span>Hack & Slash</span>
-</a>
-</li>
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/indie-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-indie.svg" alt="">
-<span>Indie</span>
-</a>
-</li>
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/luta-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-luta.svg" alt="">
-<span>Luta</span>
-</a>
-</li>
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/mmo-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-mmo.svg" alt="">
-<span>MMO</span>
-</a>
-</li>
-
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/rpg-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-rpg.svg" alt="">
-<span>RPG</span>
-</a>
-</li>
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/simulacao-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-simulacao.svg" alt="">
-<span>Simulação</span>
-</a>
-</li>
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/soulslike-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-soulslike.svg" alt="">
-<span>Soulslike</span>
-</a>
-</li>
-
-
-<li class="explore_i_cat">
-<a href="https://www.thkeys.com.br/terror-pc">
-<img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-terror.svg" alt="">
-<span>Terror</span>
-</a>
-</li>
-
-
-</div>
-</div>
-</div>
-
-</div>
-
-`);
 
 // Defina os dados dos produtos em uma variável JavaScript
 var produtosPopulares = [
@@ -787,5 +471,321 @@ $.each(produtosPopulares, function(index, produto) {
 
 // Insira a block de produtos após o elemento #listagemProdutos
 $('#listagemProdutos').after($produtosHz);
+
+$('.pagina-inicial .secao-banners').after(`
+
+    <div id="explore">
+    
+    <div class="conteiner">
+    <h2 class="titulo_explore">
+    Explore por plataforma
+    </h2>
+    
+    <div class="row-fluid">
+    <div class="append_items">    
+    <li class="explore_item">
+    <a href="https://www.thkeys.com.br/gift-xbox">
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore-xbox.png" alt="">
+    </a>
+    </li>
+    
+    <li class="explore_item">
+    <a href="https://www.thkeys.com.br/app-store-19852754">
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore_itunes.png" alt="">
+    </a>
+    </li>
+    
+    <li class="explore_item">
+    <a href="https://www.thkeys.com.br/gift-playstation">
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore-playstation.png" alt="">
+    </a>
+    </li>
+    
+    <li class="explore_item">
+    <a href="https://www.thkeys.com.br/pc-">
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore-steam.png" alt="">
+    </a>
+    </li>
+    
+    <li class="explore_item">
+    <a href="https://www.thkeys.com.br/buscar?q=FC+POINTS">
+    <img src="https://cdn.awsli.com.br/2679/2679412/arquivos/explore_fc.png" alt="">
+    </a>
+    </li>
+    
+    <li class="explore_item">
+    <a href="https://www.thkeys.com.br/buscar?q=fortnite">
+    <img src="https://cdn.awsli.com.br/2679/2679412/arquivos/explore_fortinite.png" alt="">
+    </a>
+    </li>
+    
+    <li class="explore_item">
+    <a href="https://www.thkeys.com.br/garena-free-fire-diamantes">
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore_freefire.png" alt="">
+    </a>
+    </li>
+    
+    <li class="explore_item">
+    <a href="https://www.thkeys.com.br/buscar?q=playstation+plus+brasil">
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore_plus.png" alt="">
+    </a>
+    </li>
+    
+    <li class="explore_item">
+    <a href="https://www.thkeys.com.br/nintendo">
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore-nintendo.png" alt="">
+    </a>
+    </li>
+    
+    <li class="explore_item">
+    <a href="https://www.thkeys.com.br/roblox?sort=%2Bpreco">
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore-roblox.png" alt="">
+    </a>
+    </li>        
+    
+    <li class="explore_item">
+    <a href="https://www.thkeys.com.br/google-play">
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/explore_googleplay.png" alt="">
+    </a>
+    </li>
+    
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    
+    `);
+    
+    $('#listagemProdutos .vitrine-3332079').before(`
+    
+    <div class="videoTrailer">
+    <div class="trailer_banner">
+    <a target="_blank" href="https://www.youtube.com/watch?v=O6MdexNSy3o&t=1s"><i></i> Assista ao trailer</a>
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/the-last-of-us-youtube.jpg" alt="">
+    </div>
+    <div class="jogo_banner">
+    <a href="https://www.thkeys.com.br/the-last-of-us-part-ii-remastered-pc-codigo-digital">
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/the-last-of-us-2-remastered-pc.png" alt="">
+    <div class="append_preco_btn">
+    <div class="preco"> R$ 189,90 <span>no pix</span></div>
+    <button class="btn">Comprar agora <i></i></button>
+    </div>
+    </a>
+    </div>
+    </div>
+    `);
+    
+    $('#rodape .institucional').after($('.span4.selos'));
+    $('.span4.selos ul > li:first-child').after(`
+    <li> <img alt="Loja Oficial Mercado Livre" src="https://cdn.awsli.com.br/1041/1041512/arquivos/oficial-ml.png" width="135" height="43px" /> </li>
+    <li> <img alt="Google Safe Browsing" src="https://cdn.awsli.com.br/1041/1041512/arquivos/google-s-b.png"/ width="127" height="38px"> </li>
+    `);
+    
+    //redes sociais no rodape
+    $('.links-rodape-paginas').after($('#rodape .redes-sociais'));
+    $('#rodape .redes-sociais').append(`
+    <div id="telefoneRodape">
+    <div class="tel_rp">
+    <p>WhatsApp</p>
+    <a href="#"><i class="fa-whatsapp"></i>(11) 5286-3976</a>
+    </div>
+    <div class="envio_rp">
+    <p>Formas de envio</p>
+    <li>
+    <img src="https://cdn.awsli.com.br/2679/2679412/arquivos/envio_digital.svg" alt="Envio Digital" width="127" height="24px">
+    </li>
+    <li>
+    <img src="https://cdn.awsli.com.br/2679/2679412/arquivos/envio_digital_vip.svg" alt="Envio Digital VIP" width="154" height="24px">
+    </li>
+    </div>
+    <div class="pagamento_rp">
+    <p>Formas de pagamento</p>
+    <li>
+    <img src="https://cdn.awsli.com.br/2679/2679412/arquivos/boleto.svg" alt="Boleto Bancário">
+    </li>
+    <li>
+    <img src="https://cdn.awsli.com.br/2679/2679412/arquivos/cartao.svg" alt="Cartão de crédito">
+    </li>
+    <li>
+    <img src="https://cdn.awsli.com.br/2679/2679412/arquivos/pix.svg" alt="Pix">
+    </li>
+    </div>
+    </div>
+    `);
+    
+    $('.mini-banner .modulo.span4:first-child').after(`
+    <div id="porPreco">
+    <div class="titulo_porpreco">
+    <h2>Já sabe quanto vai gastar?</h2>
+    <p>Encontre produtos por faixa de preço</p>
+    </div>
+    
+    <div class="precos">
+    <div class="preco_linha">
+    <li class="porpreco_item">
+    <a href="https://www.thkeys.com.br/10">R$ 10</a>
+    </li>
+    <li class="porpreco_item">
+    <a href="https://www.thkeys.com.br/20">R$ 20</a>
+    </li>
+    <li class="porpreco_item">
+    <a href="https://www.thkeys.com.br/30">R$ 30</a>
+    </li>
+    <li class="porpreco_item">
+    <a href="https://www.thkeys.com.br/50">R$ 50</a>
+    </li>
+    </div>
+    
+    <div class="preco_linha">
+    <li class="porpreco_item">
+    <a href="https://www.thkeys.com.br/100">R$ 100</a>
+    </li>
+    <li class="porpreco_item">
+    <a href="https://www.thkeys.com.br/150">R$ 150</a>
+    </li>
+    <li class="porpreco_item">
+    <a href="https://www.thkeys.com.br/200">R$ 200</a>
+    </li>
+    <li class="porpreco_item">
+    <a href="https://www.thkeys.com.br/250">R$ 250</a>
+    </li>
+    </div>
+    </div>
+    </div>
+    `);
+    
+    $('#listagemProdutos > ul:nth-child(5)').after($('#miniBannerFullw'));
+    $('#rodape .institucional .links-rodape-paginas ul').append(`<li><a href="https://blog.thkeys.com.br/" target="_blank">Blog</a></li>`);
+
+    $('.pagina-inicial .vitrine-3323787').before(`
+
+        <div id="explore_by-cat">
+        
+        <div class="conteiner">
+        <h2 class="titulo_explore">
+        Explore por gênero
+        </h2>
+        
+        <div class="row-fluid">
+        <div class="append_items">  
+        
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/acao-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-acao.svg" alt="">
+        <span>Ação</span>
+        </a>
+        </li>
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/aventura-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-aventura.svg" alt="">
+        <span>Aventura</span>
+        </a>
+        </li>
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/coop-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-coop.svg" alt="">
+        <span>Co-op</span>
+        </a>
+        </li>
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/corrida-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-corrida.svg" alt="">
+        <span>Corrida</span>
+        </a>
+        </li>
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/esporte-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-esporte.svg" alt="">
+        <span>Esporte</span>
+        </a>
+        </li>
+        
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/estrategia-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-estrategia.svg" alt="">
+        <span>Estratégia</span>
+        </a>
+        </li>
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/fps-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-fps.svg" alt="">
+        <span>FPS</span>
+        </a>
+        </li>
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/hack-slash-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-slash.svg" alt="">
+        <span>Hack & Slash</span>
+        </a>
+        </li>
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/indie-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-indie.svg" alt="">
+        <span>Indie</span>
+        </a>
+        </li>
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/luta-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-luta.svg" alt="">
+        <span>Luta</span>
+        </a>
+        </li>
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/mmo-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-mmo.svg" alt="">
+        <span>MMO</span>
+        </a>
+        </li>
+        
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/rpg-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-rpg.svg" alt="">
+        <span>RPG</span>
+        </a>
+        </li>
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/simulacao-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-simulacao.svg" alt="">
+        <span>Simulação</span>
+        </a>
+        </li>
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/soulslike-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-soulslike.svg" alt="">
+        <span>Soulslike</span>
+        </a>
+        </li>
+        
+        
+        <li class="explore_i_cat">
+        <a href="https://www.thkeys.com.br/terror-pc">
+        <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/icon-c-terror.svg" alt="">
+        <span>Terror</span>
+        </a>
+        </li>
+        
+        
+        </div>
+        </div>
+        </div>
+        
+        </div>
+        
+        `);
 
 }); 
