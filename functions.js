@@ -7,13 +7,23 @@ window.__thkeysUiInitialized = true;
 
 var tam = $(window).width();
 
+function runDeferred(task) {
+if ('requestIdleCallback' in window) {
+requestIdleCallback(task);
+} else {
+setTimeout(task, 0);
+}
+}
+
 if (tam >= 768 ){
 
 $('#cabecalho').after('<div id="menuCat"><div class="conteiner"><div class="row-fluid"></div></div></div>');
 $('#menuCat .row-fluid').append($('#cabecalho .menu.superior'));
 
-$('.pagina-inicial .mini-banner').prepend(`<div id="miniBannerFullw" class="conteiner"></div>`);
+if (!$('.pagina-inicial .mini-banner #miniBannerFullw').length) {
+$('.pagina-inicial .mini-banner').prepend('<div id="miniBannerFullw" class="conteiner"></div>');
 $('.pagina-inicial .mini-banner .modulo.span4').appendTo($('#miniBannerFullw'));
+}
 
 
 $('.pagina-inicial #listagemProdutos > ul:nth-child(2)').after($('.banner.tarja'));
@@ -350,6 +360,8 @@ $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-chil
 
 }
 
+if (!$('.produtos_hz').length && $('#listagemProdutos').length) {
+runDeferred(function(){
 // Defina os dados dos produtos em uma variável JavaScript
 var produtosPopulares = [
     {
@@ -471,7 +483,11 @@ $.each(produtosPopulares, function(index, produto) {
 
 // Insira a block de produtos após o elemento #listagemProdutos
 $('#listagemProdutos').after($produtosHz);
+});
+}
 
+runDeferred(function(){
+if (!$('#explore').length && $('.pagina-inicial .secao-banners').length) {
 $('.pagina-inicial .secao-banners').after(`
 
     <div id="explore">
@@ -556,7 +572,9 @@ $('.pagina-inicial .secao-banners').after(`
     </div>
     
     `);
+}
     
+if (!$('.videoTrailer').length && $('#listagemProdutos .vitrine-3332079').length) {
     $('#listagemProdutos .vitrine-3332079').before(`
     
     <div class="videoTrailer">
@@ -575,6 +593,7 @@ $('.pagina-inicial .secao-banners').after(`
     </div>
     </div>
     `);
+}
     
     $('#rodape .institucional').after($('.span4.selos'));
     $('.span4.selos ul > li:first-child').after(`
@@ -584,6 +603,7 @@ $('.pagina-inicial .secao-banners').after(`
     
     //redes sociais no rodape
     $('.links-rodape-paginas').after($('#rodape .redes-sociais'));
+    if (!$('#telefoneRodape').length) {
     $('#rodape .redes-sociais').append(`
     <div id="telefoneRodape">
     <div class="tel_rp">
@@ -613,6 +633,7 @@ $('.pagina-inicial .secao-banners').after(`
     </div>
     </div>
     `);
+    }
     
     $('.mini-banner .modulo.span4:first-child').after(`
     <div id="porPreco">
@@ -655,9 +676,12 @@ $('.pagina-inicial .secao-banners').after(`
     </div>
     `);
     
+    if ($('#miniBannerFullw').length && $('#listagemProdutos > ul:nth-child(5)').length) {
     $('#listagemProdutos > ul:nth-child(5)').after($('#miniBannerFullw'));
+    }
     $('#rodape .institucional .links-rodape-paginas ul').append(`<li><a href="https://blog.thkeys.com.br/" target="_blank">Blog</a></li>`);
 
+    if (!$('#explore_by-cat').length && $('.pagina-inicial .vitrine-3323787').length) {
     $('.pagina-inicial .vitrine-3323787').before(`
 
         <div id="explore_by-cat">
@@ -787,5 +811,7 @@ $('.pagina-inicial .secao-banners').after(`
         </div>
         
         `);
+    }
+});
 
 }); 
