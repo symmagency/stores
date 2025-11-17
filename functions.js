@@ -5,44 +5,60 @@ return;
 }
 window.__thkeysUiInitialized = true;
 
+const insertOnce = (uniqueSelector, insertFn) => {
+if ($(uniqueSelector).length === 0) {
+insertFn();
+}
+};
+
 var tam = $(window).width();
 
 if (tam >= 768 ){
 
+insertOnce('#menuCat', function(){
 $('#cabecalho').after('<div id="menuCat"><div class="conteiner"><div class="row-fluid"></div></div></div>');
+});
 $('#menuCat .row-fluid').append($('#cabecalho .menu.superior'));
 
+insertOnce('#miniBannerFullw', function(){
 $('.pagina-inicial .mini-banner').prepend(`<div id="miniBannerFullw" class="conteiner"></div>`);
 $('.pagina-inicial .mini-banner .modulo.span4').appendTo($('#miniBannerFullw'));
+});
 
 
 $('.pagina-inicial #listagemProdutos > ul:nth-child(2)').after($('.banner.tarja'));
 $('.pagina-busca .listagem > .titulo').appendTo('.pagina-busca .ordenar-listagem.topo');
 
 
+insertOnce('.cat.cat-desktop', function(){
 $('.conteudo-topo').before(
-'<div class="cat">'+
+'<div class="cat cat-desktop">'+
 '<span class="category"><i><div class="hamb-1 fundo-principal"></div><div class="hamb-1 fundo-principal"></div><div class="hamb-1 fundo-principal"></div></i></span>'+
 '</div>'
 );
+});
 
 $('.cat').on('click', function(){
 $('#menuCat').toggleClass('active');
 $('.category').toggleClass('active');
 });
 
+insertOnce('.conteudo-topo .inferior .span8.busca-mobile + .login-top', function(){
 $('.conteudo-topo .inferior .span8.busca-mobile').after(
 '<div class="login-top">'+
 '<a href="../conta/criar?next=conta_index&email=_"><span class="login-txt"><strong>Cadastre-se</strong></span></a>'+
 '</div>'
 );
+});
 
 
+insertOnce('.conteudo-topo .inferior .span8.busca-mobile + .atd-top', function(){
 $('.conteudo-topo .inferior .span8.busca-mobile').after(
 '<div class="atd-top">'+
 '<a href="../conta/login"><span class="atd-txt"><strong>Login</strong><span></a>'+
 '</div>'
 );
+});
 
 $('.carrinho>a>i').addClass('cor-principal');
 $('.atd-top ul.drop-atd').prepend($('.barra-inicial .canais-contato.span9>ul>li'));
@@ -100,7 +116,9 @@ $('#marcas .row-fluid').append($('.marcas'));
 
 }
 
+insertOnce('.back-top', function(){
 $('body').append('<a href="#" onclick="topFunction()" class="back-top borda-principal"><i class="fa fa-chevron-up"></i><span>subir</span></a>');
+});
 
 window.onscroll = function() {scrollFunction()};
 
@@ -121,9 +139,11 @@ $('.carrinho>a span').html('Carrinho');
 //$('.pagina-categoria .secao-banners').before($('.breadcrumbs'));
 //$('.pagina-categoria .breadcrumbs').append($('.conteudo h1'));
 
+insertOnce('.pagina-categoria .ordenar-listagem.topo .titulo_categoria', function(){
 $('.pagina-categoria .ordenar-listagem.topo').append(`
 <div class="titulo_categoria"></div>
 `);
+});
 
 $('.titulo_categoria').append($('.pagina-categoria .conteudo > h1.titulo'));
 $('.titulo_categoria').append($('.coluna .componente .interno .titulo + p'));
@@ -170,7 +190,9 @@ $('#menuCat').removeClass('scroll');
 
 
 $('.banner .newsletter .titulo').addClass('cor-principal').removeClass('cor-secundaria');
+if (!$('#rodape .redes-sociais .span12.visible-phone').length) {
 $('#rodape .span12.visible-phone > ul > li').clone().appendTo('#rodape .redes-sociais');
+}
 
 //inputs login
 $('.cadastro-logar .form-horizontal .controls #id_email').attr("placeholder", "E-mail");
@@ -180,12 +202,18 @@ $('.cadastro-logar>.span6:nth-child(2) #id_email').attr("placeholder", "Digite o
 //$('.produto .info-principal-produto .nome-produto').append($('.produto-compartilhar .lista-favoritos'));
 
 //$('.parcelas-produto .accordion .accordion-group:first-child .accordion-body').removeClass('in');
+if (!$('.produto .acoes-produto .bandeira_promo_principal').length) {
 $('.produto .acoes-produto .desconto-a-vista').before('<span class="bandeira_promo_principal">-10% OFF NO PIX</span>');
+}
+if (!$('.pagina-produto .produto .span6 > .principal .aviso_produto').length) {
 $('.pagina-produto .produto .span6 > .principal').append('<span class="aviso_produto">* Todos os produtos do nosso site são códigos 100% originais, enviados por e-mail.</span>');
+}
 
 $('#rodape > div:last-child .row-fluid > div:last-child a img').attr('src','https://cdn.awsli.com.br/1041/1041512/arquivos/loja-integrada.svg');
 $('#rodape .span4.selos > ul > li:first-child img').attr('src','https://cdn.awsli.com.br/1041/1041512/arquivos/selo-protegido.png');
+if (!$('#rodape .symm').length) {
 $('#rodape > div:last-child .row-fluid > div:last-child a').before('<a href="https://wa.me/551152863976" class="symm" target="_blank"><img src="https://cdn.awsli.com.br/1041/1041512/arquivos/desenvolvido-symm.svg" alt="Symm.agency" width="120px" height="35px"></a>');
+}
 $('#rodape > div:last-child .row-fluid > div:first-child').removeClass('span9 span6 atendimento').addClass('assinatura').attr('style', '');
 $('#rodape > div:last-child .row-fluid > div:last-child').attr('style', '').addClass('assinatura-rodape');
 
@@ -200,15 +228,18 @@ $(this).text($result);
 
 if (tam <= 767 ){
 
+insertOnce('#cabecalho .conteiner .logo + .cat.cat-mobile', function(){
 $('#cabecalho .conteiner .logo').before(
-'<div class="cat cor-principal">'+
+'<div class="cat cat-mobile cor-principal">'+
 '<span class="category"><i><div class="hamb-1 fundo-principal"></div><div class="hamb-1 fundo-principal"></div><div class="hamb-1 fundo-principal"></div></i></span>'+
 '</div>'
 );
+});
 
 $('.vitrine-3323786').before($('.banner.tarja'));
 
 
+insertOnce('#cabecalho .menu.superior .nivel-um > .cab-nav', function(){
 $('#cabecalho .menu.superior .nivel-um').prepend(
 '<div class="cab-nav">'+
 '<a class="close-nav-full"></a>'+
@@ -219,8 +250,11 @@ $('#cabecalho .menu.superior .nivel-um').prepend(
 '</div>'+
 '</div>'
 );
+});
 if ($('.btn-group').length){
+if (!$('.menu.superior .nivel-um .cab-nav .logado-sair').length) {
 $('.menu.superior .nivel-um .cab-nav').prepend('<li class="logado-sair"><a href="/conta/logout"><i class="signin-icon"></i><span>Sair</span></a></li>');
+}
 }
 if ($('#cabecalho .atalhos-mobile .icon-signout').is(':visible')) {
 //$('#cabecalho .atalhos-mobile .icon-signout').appendTo($('#cabecalho .acc-nav'));
@@ -253,6 +287,7 @@ $('.atalhos-mobile li.fundo-principal').addClass('cor-principal borda-principal'
 $('.atalhos-mobile li.fundo-principal a').addClass('cor-principal');
 $('#cabecalho .conteiner .logo').after($('.atalhos-mobile li.fundo-principal'));
 
+insertOnce('#cabecalho>.conteiner>.row-fluid>.span3 > .busca_topo', function(){
 $('#cabecalho>.conteiner>.row-fluid>.span3 > .fundo-principal').before(
 `<div class="busca_topo">
 <a >
@@ -265,7 +300,9 @@ Login
 </a>
 </div>`
 );
+});
 
+insertOnce('#cabecalho>.conteiner>.row-fluid>.span6 > .busca_topo', function(){
 $('#cabecalho>.conteiner>.row-fluid>.span6 > .fundo-principal').before(
 `<div class="busca_topo">
 <a >
@@ -278,11 +315,12 @@ Login
 </a>
 </div>`
 );
+});
 
 $('#cabecalho>.conteiner>.row-fluid>.span3 > .fundo-principal').append($('.conteudo-topo .inferior .span4.hidden-phone .carrinho>a strong'));
 
 
-$('.busca_topo').click(function(){
+$(document).off('click.busca_topo').on('click.busca_topo', '.busca_topo', function(){
 $('.conteudo-topo').toggleClass("active");
 });
 
@@ -306,8 +344,12 @@ $('.login-top ul.drop-login').replaceWith($('.conteudo-topo:first-child>.superio
 
 if(isLogged == true){
 var nomeUsuario = $('span.menu-user-name').text();
+if (!$('.menu.superior .nivel-um .logado-sair').length) {
 $('.menu.superior .nivel-um').prepend('<li class="logado-sair"><a href="/conta/logout"><i class="signin-icon"></i><span>Sair</span></a></li>');
+}
+if (!$('.menu.superior .nivel-um .logado').length) {
 $('.menu.superior .nivel-um').prepend('<li class="logado"><a href="/conta/index"><i class="fa-solid fa-user"></i><span>Olá, ' + nomeUsuario + '</span></a></li>');
+}
 
 $('li.signin-menu-superior, li.signup-menu-superior').css('display','none');
 
@@ -325,18 +367,21 @@ $('.login-top ul.dropdown-menu').css("left", "-67px");
 }
 },500)
 
+insertOnce('.titulo_categoria .button_vermais', function(){
 $('.titulo_categoria').append(`
 
 <button class="button_vermais" >Ver mais</button>
 
 `);
+});
 
-$('.button_vermais').click(function(){
+$(document).off('click.button_vermais').on('click.button_vermais', '.button_vermais', function(){
 $('.titulo_categoria p').toggleClass('open');
 $('.button_vermais').toggleClass('ver_menos');
 });
 
 
+insertOnce('#explore', function(){
 $('.pagina-inicial .secao-banners').after(`
 
 <div id="explore">
@@ -421,7 +466,9 @@ Explore por plataforma
 </div>
 
 `);
+});
 
+insertOnce('.videoTrailer', function(){
 $('#listagemProdutos .vitrine-3332079').before(`
 
 <div class="videoTrailer">
@@ -440,14 +487,18 @@ $('#listagemProdutos .vitrine-3332079').before(`
 </div>
 </div>
 `);
+});
 
 $('#rodape .institucional').after($('.span4.selos'));
+insertOnce('.span4.selos ul > li img[alt="Loja Oficial Mercado Livre"]', function(){
 $('.span4.selos ul > li:first-child').after(`
 <li> <img alt="Loja Oficial Mercado Livre" src="https://cdn.awsli.com.br/1041/1041512/arquivos/oficial-ml.png" width="135" height="43px" /> </li>
 <li> <img alt="Google Safe Browsing" src="https://cdn.awsli.com.br/1041/1041512/arquivos/google-s-b.png"/ width="127" height="38px"> </li>
 `);
+});
 
 //redes sociais no rodape
+if (!$('#telefoneRodape').length) {
 $('.links-rodape-paginas').after($('#rodape .redes-sociais'));
 $('#rodape .redes-sociais').append(`
 <div id="telefoneRodape">
@@ -478,7 +529,9 @@ $('#rodape .redes-sociais').append(`
 </div>
 </div>
 `);
+}
 
+insertOnce('#porPreco', function(){
 $('.mini-banner .modulo.span4:first-child').after(`
 <div id="porPreco">
 <div class="titulo_porpreco">
@@ -519,9 +572,12 @@ $('.mini-banner .modulo.span4:first-child').after(`
 </div>
 </div>
 `);
+});
 
 $('#listagemProdutos > ul:nth-child(5)').after($('#miniBannerFullw'));
+if (!$('#rodape .institucional .links-rodape-paginas ul a[href="https://blog.thkeys.com.br/"]').length) {
 $('#rodape .institucional .links-rodape-paginas ul').append(`<li><a href="https://blog.thkeys.com.br/" target="_blank">Blog</a></li>`);
+}
 
 var tam = $(window).width();
 
@@ -535,14 +591,19 @@ $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-chil
 
 }
 
-$('.listagem-item').append(`
+$('.listagem-item').each(function(){
+if ($(this).find('#botaoWhats').length === 0) {
+$(this).append(`
 <button id="botaoWhats">
 <a target="_blank" href="https://wa.me/551152863976?text=Boas-Vindas a THKEYS! O que eu posso fazer por você hoje?">
 <i class="fa-whatsapp"></i> Compre também pelo WhatsApp
 </a>
 </button>
 `);
+}
+});
 
+insertOnce('#explore_by-cat', function(){
 $('.pagina-inicial .vitrine-3323787').before(`
 
 <div id="explore_by-cat">
@@ -672,6 +733,7 @@ Explore por gênero
 </div>
 
 `);
+});
 
 // Defina os dados dos produtos em uma variável JavaScript
 var produtosPopulares = [
@@ -758,6 +820,7 @@ var produtosPopulares = [
 ];
 
 // Construa o HTML com jQuery usando os dados das variáveis
+if (!$('.produtos_hz').length) {
 var $produtosHz = $(`
     <div class="produtos_hz">
         <div class="conteiner">
@@ -794,5 +857,6 @@ $.each(produtosPopulares, function(index, produto) {
 
 // Insira a block de produtos após o elemento #listagemProdutos
 $('#listagemProdutos').after($produtosHz);
+}
 
 }); 
