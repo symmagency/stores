@@ -1,0 +1,47 @@
+<script>
+    var codigoProduto = ['JCFHSU8T5'];
+
+    $(document).ready(function() {
+        var existeCodigoNaPaginaProduto = false;
+
+        var mercadoPagoProduto = document.querySelector('.parcelas-produto > ul > li > div:last-child');
+        var copiaMercadoPagoProduto = null;
+        if (mercadoPagoProduto && mercadoPagoProduto.id) {
+            mercadoPagoProduto = $(`#${mercadoPagoProduto.id}`);
+            copiaMercadoPagoProduto = mercadoPagoProduto.parent().clone(true, true); 
+            mercadoPagoProduto.parent().remove();
+        }
+
+        codigoProduto.forEach(function(codigo) {
+            if ($('.codigo-produto > span > span').text().includes(codigo)) {
+                existeCodigoNaPaginaProduto = true;
+            }
+            if ($('.produto-info > ul > li > span > strong').text().includes(codigo)) {
+                existeCodigoNaPaginaProduto = true;
+            }
+        });
+
+        if (existeCodigoNaPaginaProduto && copiaMercadoPagoProduto) {
+            var existePagamentoMercadoPago = copiaMercadoPagoProduto.find('div[id*="mercadopago"]').length > 0;
+            if (existePagamentoMercadoPago) {
+                $('.parcelas-produto > ul').prepend(copiaMercadoPagoProduto);
+            }
+        }
+
+        var existeCodigoNaPaginaCheckout = false;
+
+        // usa detach() para manter eventos
+        var mercadoPagoCheckout = $('#formasPagamento > div.li-box-payment.li-box-payment-cc').detach();
+        $('#formasPagamento > div.li-box-payment.li-box-payment-mercadopagov1-18').remove();
+
+        codigoProduto.forEach(function(codigo) {
+            if ($('.produto-info > ul > li > span > strong').text().includes(codigo)) {
+                existeCodigoNaPaginaCheckout = true;
+            }
+        });
+
+        if (existeCodigoNaPaginaCheckout && mercadoPagoCheckout.length) {
+            $('#formasPagamento > div.li-box-payment.li-box-payment-proxy-pagali-v2-pix-72').before(mercadoPagoCheckout);
+        }
+    });
+</script>
