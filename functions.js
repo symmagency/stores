@@ -821,4 +821,51 @@ if (!$('.videoTrailer').length && $('#listagemProdutos .vitrine-3332079').length
     }
 });
 
+// Variáveis para personalizar as informações da tarja de benefícios
+var benefit1Icon = "https://cdn.awsli.com.br/1041/1041512/arquivos/tarja-icon-mailcheck.svg";
+var benefit1IconAlt = "Ícone de e-mail";
+var benefit1Title = "Receba por e-mail";
+var benefit1Description = "Seu código vai direto para o seu email";
+
+var benefit2Icon = "https://cdn.awsli.com.br/1041/1041512/arquivos/ra-tarja-2.png";
+var benefit2IconAlt = "Reclame aqui";
+var benefit2Title = "Reclame aqui";
+var benefit2Description = "THKEYS Finalista do Prêmio RA2025";
+
+var benefit3Icon = "https://cdn.awsli.com.br/1041/1041512/arquivos/secure-tarja.svg";
+var benefit3IconAlt = "Ícone de avaliação";
+var benefit3Title = "Segurança";
+var benefit3Description = "Códigos Originais segurança garantida";
+
+// Monta o HTML usando as variáveis acima
+var htmlBenefits = `
+  <div class="benefits-row">
+    <div class="benefit-item">
+      <img src="${benefit1Icon}" alt="${benefit1IconAlt}">
+      <div>
+        <span>${benefit1Title}</span>
+        <p><strong>${benefit1Description}</strong></p>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <img src="${benefit2Icon}" alt="${benefit2IconAlt}">
+      <div>
+        <span>${benefit2Title}</span>
+        <p><strong>${benefit2Description}</strong></p>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <img src="${benefit3Icon}" alt="${benefit3IconAlt}">
+      <div>
+        <span>${benefit3Title}</span>
+        <p><strong>${benefit3Description}</strong></p>
+      </div>
+    </div>
+  </div>
+`;
+
+// Insere o HTML no local desejado (substitua o seletor conforme necessário)
+$('.pagina-inicial .secao-banners').after(htmlBenefits);
+
+
 }); 
