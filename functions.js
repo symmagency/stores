@@ -5,7 +5,19 @@ return;
 }
 window.__thkeysUiInitialized = true;
 
-var tam = $(window).width();
+var $windowEl = $(window);
+var $body = $('body');
+var $cabecalho = $('#cabecalho');
+var $conteudoTopo = $('.conteudo-topo');
+var $rodape = $('#rodape');
+var $menuSuperior = $('.menu.superior');
+var $menuNivelUm = $menuSuperior.find('.nivel-um');
+var $listagemProdutos = $('#listagemProdutos');
+var $menuCat = $();
+
+var tam = $windowEl.width();
+var isDesktop = tam >= 768;
+var isMobile = tam <= 767;
 
 function runDeferred(task) {
 if ('requestIdleCallback' in window) {
@@ -15,10 +27,37 @@ setTimeout(task, 0);
 }
 }
 
-if (tam >= 768 ){
+function replaceLabelText($elements, label) {
+if (!$elements.length) {
+return;
+}
+$elements.text(function (_, text) {
+return text.replace(label, '');
+});
+}
 
-$('#cabecalho').after('<div id="menuCat"><div class="conteiner"><div class="row-fluid"></div></div></div>');
-$('#menuCat .row-fluid').append($('#cabecalho .menu.superior'));
+function personalizeLoginGreeting($toggle) {
+if (!$toggle.length) {
+return;
+}
+var usernameText = $toggle.text();
+var index = usernameText.indexOf(',');
+if (index === -1) {
+return;
+}
+var firstname = usernameText.substring(index + 2).split(' ').slice(0, -1)[0] || '';
+if(firstname.length > 10 ) {
+firstname = firstname.substring(0, 10) + ' ...';
+}
+$toggle.text(`Olá, ${firstname}`);
+}
+
+if (isDesktop ){
+runDeferred(function(){
+
+$cabecalho.after('<div id="menuCat"><div class="conteiner"><div class="row-fluid"></div></div></div>');
+$menuCat = $('#menuCat');
+$menuCat.find('.row-fluid').append($menuSuperior);
 
 if (!$('.pagina-inicial .mini-banner #miniBannerFullw').length) {
 $('.pagina-inicial .mini-banner').prepend('<div id="miniBannerFullw" class="conteiner"></div>');
@@ -37,18 +76,19 @@ $('.conteudo-topo').before(
 );
 
 $('.cat').on('click', function(){
-$('#menuCat').toggleClass('active');
+$menuCat.toggleClass('active');
 $('.category').toggleClass('active');
 });
 
-$('.conteudo-topo .inferior .span8.busca-mobile').after(
+var $desktopBuscaMobile = $conteudoTopo.find('.inferior .span8.busca-mobile');
+$desktopBuscaMobile.after(
 '<div class="login-top">'+
 '<a href="../conta/criar?next=conta_index&email=_"><span class="login-txt"><strong>Cadastre-se</strong></span></a>'+
 '</div>'
 );
 
 
-$('.conteudo-topo .inferior .span8.busca-mobile').after(
+$desktopBuscaMobile.after(
 '<div class="atd-top">'+
 '<a href="../conta/login"><span class="atd-txt"><strong>Login</strong></span></a>'+
 '</div>'
@@ -65,35 +105,16 @@ $('.atd-top ul.drop-atd').prepend($('.barra-inicial .canais-contato.span9>ul>li'
 //$('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-child').append($('.pagina-produto #buy-together-position2'));
 //$('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-child').append($('.listagem.aproveite-tambem'));
 
-}
-
-if( $('.drop-atd .tel-whatsapp>span').length ){
-$('.drop-atd .tel-whatsapp>span').each(function () {
-var $this = $(this).text();
-var $result = $(this).text().replace("Whatsapp:", "");
-$(this).text($result);
 });
 }
 
-if( $('.drop-atd li:nth-child(2)>span').length ){
-$('.drop-atd li:nth-child(2)>span').each(function () {
-var $this = $(this).text();
-var $result = $(this).text().replace("Telefone:", "");
-$(this).text($result);
-});
-}
-
-if( $('.drop-atd .tel-skype>a').length ){
-$('.drop-atd .tel-skype>a').each(function () {
-var $this = $(this).text();
-var $result = $(this).text().replace("Skype:", "");
-$(this).text($result);
-});
-}
+replaceLabelText($('.drop-atd .tel-whatsapp>span'), 'Whatsapp:');
+replaceLabelText($('.drop-atd li:nth-child(2)>span'), 'Telefone:');
+replaceLabelText($('.drop-atd .tel-skype>a'), 'Skype:');
 
 if($('.marcas').length) {
 
-$('#rodape').before(
+$rodape.before(
 '<div id="marcas">'+
 '<div class="conteiner">'+
 '<div class="row-fluid">'+
@@ -104,15 +125,17 @@ $('#rodape').before(
 '</div>'+
 '</div>');
 
-$('#marcas .row-fluid').append($('.marcas'));
+var $marcasWrapper = $('#marcas');
+$marcasWrapper.find('.row-fluid').append($('.marcas'));
 
 } else {
 
 }
 
-$('body').append('<a href="#" onclick="topFunction()" class="back-top borda-principal"><i class="fa fa-chevron-up"></i><span>subir</span></a>');
+$body.append('<a href="#" onclick="topFunction()" class="back-top borda-principal"><i class="fa fa-chevron-up"></i><span>subir</span></a>');
 
-window.onscroll = function() {scrollFunction()};
+$windowEl.on('scroll', scrollFunction);
+scrollFunction();
 
 function scrollFunction() {
 if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -123,7 +146,7 @@ $(".back-top").removeClass('show');
 }
 
 function topFunction() {
-$('body').animate({scrollTop: '0'}, 200);
+$body.animate({scrollTop: '0'}, 200);
 }
 
 $('.carrinho>a span').html('Carrinho');
@@ -138,49 +161,40 @@ $('.pagina-categoria .ordenar-listagem.topo').append(`
 $('.titulo_categoria').append($('.pagina-categoria .conteudo > h1.titulo'));
 $('.titulo_categoria').append($('.coluna .componente .interno .titulo + p'));
 
-if ($('.conteudo-topo .superior .span8 .btn-group:first-child').is(':visible')) {
-$('.login-txt').replaceWith($('.conteudo-topo .superior .span8 .btn-group:first-child'));
-//Recorta o primeiro nome do usuário logado no menu desktop
-let usenameText = $('.login-top .btn-group .dropdown-toggle').text();
-let index = $('.login-top .btn-group .dropdown-toggle').text().indexOf(',');
-let firstname = usenameText.substring(index + 2).split(' ').slice(0, -1)[0];
-if(firstname.length > 10 ) {
-firstname = firstname.substring(0, 10) + ' ...';
+var $primaryDesktopBtnGroup = $conteudoTopo.find('.superior .span8 .btn-group:first-child');
+var isPrimaryBtnGroupVisible = $primaryDesktopBtnGroup.is(':visible');
+if (isPrimaryBtnGroupVisible) {
+$('.login-txt').replaceWith($primaryDesktopBtnGroup);
+var $primaryDropdown = $primaryDesktopBtnGroup.find('.dropdown-menu').first();
+if ($primaryDropdown.length) {
+$('.login-top ul.drop-login').replaceWith($primaryDropdown);
+$primaryDropdown.css("left", "-67px");
 }
-document.querySelector('.login-top .btn-group .dropdown-toggle').textContent = `Olá, ${firstname}`;
-$('.login-top ul.dropdown-menu').css("left", "-67px");
-}
-
-if ($('.conteudo-topo .superior .span8 .btn-group:first-child').is(':visible')) {
-$('.login-top ul.drop-login').replaceWith($('.conteudo-topo .superior .span8 .btn-group:first-child .dropdown-menu'));
-
-
+personalizeLoginGreeting($('.login-top .btn-group .dropdown-toggle'));
 }
 
-if ($('.conteudo-topo:first-child>.superior>.span12>.btn-group:first-child').is(':visible')) {
-//  $('.login-top .login-txt').html('<i class="fa fa-user cor-principal"></i>Olá!');
-
-
+var $alternateDesktopBtnGroup = $conteudoTopo.first().find('> .superior > .span12 > .btn-group:first-child');
+if ($alternateDesktopBtnGroup.is(':visible')) {
+var $alternateDropdown = $alternateDesktopBtnGroup.find('.dropdown-menu').first();
+if ($alternateDropdown.length) {
+$('.login-top ul.drop-login').replaceWith($alternateDropdown);
 }
-
-if ($('.conteudo-topo:first-child>.superior>.span12>.btn-group:first-child').is(':visible')) {
-$('.login-top ul.drop-login').replaceWith($('.conteudo-topo:first-child>.superior>.span12>.btn-group:first-child .dropdown-menu'));
 }
 //Header fixo
-$(window).scroll(function(){
-if ($(window).scrollTop() > 150){
-$('#cabecalho').addClass('scroll');
-$('#menuCat').addClass('scroll');
+$windowEl.on('scroll.thkeysHeader', function(){
+if ($windowEl.scrollTop() > 150){
+$cabecalho.addClass('scroll');
+$menuCat.addClass('scroll');
 } else {
-$('#cabecalho').removeClass('scroll');
-$('#menuCat').removeClass('scroll');
+$cabecalho.removeClass('scroll');
+$menuCat.removeClass('scroll');
 }
 });
 
 
 
 $('.banner .newsletter .titulo').addClass('cor-principal').removeClass('cor-secundaria');
-$('#rodape .span12.visible-phone > ul > li').clone().appendTo('#rodape .redes-sociais');
+$rodape.find('.span12.visible-phone > ul > li').clone().appendTo($rodape.find('.redes-sociais'));
 
 //inputs login
 $('.cadastro-logar .form-horizontal .controls #id_email').attr("placeholder", "E-mail");
@@ -193,11 +207,11 @@ $('.cadastro-logar>.span6:nth-child(2) #id_email').attr("placeholder", "Digite o
 $('.produto .acoes-produto .desconto-a-vista').before('<span class="bandeira_promo_principal">-10% OFF NO PIX</span>');
 $('.pagina-produto .produto .span6 > .principal').append('<span class="aviso_produto">* Todos os produtos do nosso site são códigos 100% originais, enviados por e-mail.</span>');
 
-$('#rodape > div:last-child .row-fluid > div:last-child a img').attr('src','https://cdn.awsli.com.br/1041/1041512/arquivos/loja-integrada.svg');
-$('#rodape .span4.selos > ul > li:first-child img').attr('src','https://cdn.awsli.com.br/1041/1041512/arquivos/selo-protegido.png');
-$('#rodape > div:last-child .row-fluid > div:last-child a').before('<a href="https://wa.me/551152863976" class="symm" target="_blank"><img src="https://cdn.awsli.com.br/1041/1041512/arquivos/desenvolvido-symm.svg" alt="Symm.agency" width="120px" height="35px"></a>');
-$('#rodape > div:last-child .row-fluid > div:first-child').removeClass('span9 span6 atendimento').addClass('assinatura').attr('style', '');
-$('#rodape > div:last-child .row-fluid > div:last-child').attr('style', '').addClass('assinatura-rodape');
+$rodape.children('div:last-child').find('.row-fluid > div:last-child a img').attr('src','https://cdn.awsli.com.br/1041/1041512/arquivos/loja-integrada.svg');
+$rodape.find('.span4.selos > ul > li:first-child img').attr('src','https://cdn.awsli.com.br/1041/1041512/arquivos/selo-protegido.png');
+$rodape.children('div:last-child').find('.row-fluid > div:last-child a').before('<a href="https://wa.me/551152863976" class="symm" target="_blank"><img src="https://cdn.awsli.com.br/1041/1041512/arquivos/desenvolvido-symm.svg" alt="Symm.agency" width="120px" height="35px"></a>');
+$rodape.children('div:last-child').find('.row-fluid > div:first-child').removeClass('span9 span6 atendimento').addClass('assinatura').attr('style', '');
+$rodape.children('div:last-child').find('.row-fluid > div:last-child').attr('style', '').addClass('assinatura-rodape');
 
 
 if( $('.listagem-linha .listagem-item .bandeiras-produto .bandeira-promocao').length ){
@@ -208,9 +222,16 @@ $(this).text($result);
 });
 }
 
-if (tam <= 767 ){
+if (isMobile ){
+runDeferred(function(){
 
-$('#cabecalho .conteiner .logo').before(
+var $cabecalhoLogo = $cabecalho.find('.conteiner .logo');
+var $cabecalhoContainer = $cabecalho.children('.conteiner');
+var $cabecalhoRowFluid = $cabecalhoContainer.children('.row-fluid');
+var $cabecalhoSpan3Fundo = $cabecalhoRowFluid.children('.span3').children('.fundo-principal');
+var $cabecalhoSpan6Fundo = $cabecalhoRowFluid.children('.span6').children('.fundo-principal');
+
+$cabecalhoLogo.before(
 '<div class="cat cor-principal">'+
 '<span class="category"><i><div class="hamb-1 fundo-principal"></div><div class="hamb-1 fundo-principal"></div><div class="hamb-1 fundo-principal"></div></i></span>'+
 '</div>'
@@ -219,7 +240,7 @@ $('#cabecalho .conteiner .logo').before(
 $('.vitrine-3323786').before($('.banner.tarja'));
 
 
-$('#cabecalho .menu.superior .nivel-um').prepend(
+$menuNivelUm.prepend(
 '<li class="cab-nav">'+
 '<a class="close-nav-full"></a>'+
 '<div class="close-nav">'+
@@ -231,40 +252,40 @@ $('#cabecalho .menu.superior .nivel-um').prepend(
 '</li>'
 );
 if ($('.btn-group').length){
-$('.menu.superior .nivel-um .cab-nav .cab-nav-menu').prepend('<li class="logado-sair"><a href="/conta/logout"><i class="signin-icon"></i><span>Sair</span></a></li>');
+$menuNivelUm.find('.cab-nav .cab-nav-menu').prepend('<li class="logado-sair"><a href="/conta/logout"><i class="signin-icon"></i><span>Sair</span></a></li>');
 }
-if ($('#cabecalho .atalhos-mobile .icon-signout').is(':visible')) {
+if ($cabecalho.find('.atalhos-mobile .icon-signout').is(':visible')) {
 //$('#cabecalho .atalhos-mobile .icon-signout').appendTo($('#cabecalho .acc-nav'));
 }
 
 
-$('.menu.superior .nivel-um .cab-nav .acc-nav').append($('#cabecalho a.icon-user'));
-$('#cabecalho .cab-nav a').addClass('cor-principal');
+$menuNivelUm.find('.cab-nav .acc-nav').append($cabecalho.find('a.icon-user'));
+$cabecalho.find('.cab-nav a').addClass('cor-principal');
 
 $('.cat').click(
 function() {
-$('.menu.superior .nivel-um').toggleClass('active');
+$menuNivelUm.toggleClass('active');
 }
 );
 
-$('#cabecalho .close-nav').click(
+$cabecalho.find('.close-nav').click(
 function() {
-$('.menu.superior .nivel-um').toggleClass('active');
+$menuNivelUm.toggleClass('active');
 }
 );
 
-$('.menu.superior .nivel-um .cab-nav .close-nav-full').click(
+$menuNivelUm.find('.cab-nav .close-nav-full').click(
 function() {
-$('.menu.superior .nivel-um').toggleClass('active');
+$menuNivelUm.toggleClass('active');
 }
 );
 
 $('.produto .conteiner-imagem').before($('.produto .span6> .principal .info-principal-produto'));
 $('.atalhos-mobile li.fundo-principal').addClass('cor-principal borda-principal');
 $('.atalhos-mobile li.fundo-principal a').addClass('cor-principal');
-$('#cabecalho .conteiner .logo').after($('.atalhos-mobile li.fundo-principal'));
+$cabecalhoLogo.after($('.atalhos-mobile li.fundo-principal'));
 
-$('#cabecalho>.conteiner>.row-fluid>.span3 > .fundo-principal').before(
+$cabecalhoSpan3Fundo.before(
 `<div class="busca_topo">
 <a >
 Busca
@@ -277,7 +298,7 @@ Login
 </div>`
 );
 
-$('#cabecalho>.conteiner>.row-fluid>.span6 > .fundo-principal').before(
+$cabecalhoSpan6Fundo.before(
 `<div class="busca_topo">
 <a >
 Busca
@@ -290,47 +311,54 @@ Login
 </div>`
 );
 
-$('#cabecalho>.conteiner>.row-fluid>.span3 > .fundo-principal').append($('.conteudo-topo .inferior .span4.hidden-phone .carrinho>a strong'));
+$cabecalhoSpan3Fundo.append($('.conteudo-topo .inferior .span4.hidden-phone .carrinho>a strong'));
 
 
 $('.busca_topo').click(function(){
 $('.conteudo-topo').toggleClass("active");
 });
 
-$('.conteudo-topo').before($('.menu.superior'));
+$conteudoTopo.before($menuSuperior);
+});
 }
 
+runDeferred(function(){
 $('.ordenar-listagem.topo').after($('.banner.vitrine'));
 
 setTimeout(function(){
-let isLogged = ($('.btn-group .menu-user-name').text() !== "")? true : false;
+var $menuUserName = $('.btn-group .menu-user-name');
+var isLogged = ($.trim($menuUserName.text()) !== "");
 
-if(isLogged == true){
-$('.login-conta a').replaceWith($('.conteudo-topo .superior .span8 .btn-group:first-child'));
-$('.login-top ul.drop-login').replaceWith($('.conteudo-topo .superior .span8 .btn-group:first-child .dropdown-menu'));
+if(isLogged){
+var $desktopBtnGroup = $conteudoTopo.find('.superior .span8 .btn-group:first-child');
+var $alternateBtnGroup = $conteudoTopo.first().find('> .superior > .span12 > .btn-group:first-child');
+if ($desktopBtnGroup.length) {
+$('.login-conta a').replaceWith($desktopBtnGroup);
+}
+var $desktopDropdownLogged = $desktopBtnGroup.find('.dropdown-menu').first();
+if ($desktopDropdownLogged.length) {
+$('.login-top ul.drop-login').replaceWith($desktopDropdownLogged);
+}
 $('.login-top .login-txt').html('Olá!');
-$('.login-top ul.drop-login').replaceWith($('.conteudo-topo:first-child>.superior>.span12>.btn-group:first-child .dropdown-menu'));
-
-
+var $alternateDropdownLogged = $alternateBtnGroup.find('.dropdown-menu').first();
+if ($alternateDropdownLogged.length) {
+$('.login-top ul.drop-login').replaceWith($alternateDropdownLogged);
+}
 }
 
 
-if(isLogged == true){
+if(isLogged){
 var nomeUsuario = $('span.menu-user-name').text();
-$('.menu.superior .nivel-um').prepend('<li class="logado-sair"><a href="/conta/logout"><i class="signin-icon"></i><span>Sair</span></a></li>');
-$('.menu.superior .nivel-um').prepend('<li class="logado"><a href="/conta/index"><i class="fa-solid fa-user"></i><span>Olá, ' + nomeUsuario + '</span></a></li>');
+$menuNivelUm.prepend('<li class="logado-sair"><a href="/conta/logout"><i class="signin-icon"></i><span>Sair</span></a></li>');
+$menuNivelUm.prepend('<li class="logado"><a href="/conta/index"><i class="fa-solid fa-user"></i><span>Olá, ' + nomeUsuario + '</span></a></li>');
 
 $('li.signin-menu-superior, li.signup-menu-superior').css('display','none');
 
-$('.login-txt').replaceWith($('.conteudo-topo .superior .span8 .btn-group:first-child'));
-//Recorta o primeiro nome do usuário logado no menu desktop
-let usenameText = $('.login-top .btn-group .dropdown-toggle').text();
-let index = $('.login-top .btn-group .dropdown-toggle').text().indexOf(',');
-let firstname = usenameText.substring(index + 2).split(' ').slice(0, -1)[0];
-if(firstname.length > 10 ) {
-firstname = firstname.substring(0, 10) + ' ...';
+var $loginBtnGroup = $conteudoTopo.find('.superior .span8 .btn-group:first-child');
+if ($loginBtnGroup.length) {
+$('.login-txt').replaceWith($loginBtnGroup);
 }
-document.querySelector('.login-top .btn-group .dropdown-toggle').textContent = `Olá, ${firstname}`;
+personalizeLoginGreeting($('.login-top .btn-group .dropdown-toggle'));
 $('.login-top ul.dropdown-menu').css("left", "-67px");
 
 }
@@ -346,21 +374,21 @@ $('.button_vermais').click(function(){
 $('.titulo_categoria p').toggleClass('open');
 $('.button_vermais').toggleClass('ver_menos');
 });
-
-
-var tam = $(window).width();
+});
 
 //só desktop
-if (tam >= 768 ){
+if (isDesktop ){
+runDeferred(function(){
 
 $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-child').append($('.pagina-produto #buy-together-position1'));
 $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-child').append($('.abas-custom'));
 $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-child').append($('.pagina-produto #buy-together-position2'));
 $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-child').append($('.listagem.aproveite-tambem'));
 
+});
 }
 
-if (!$('.produtos_hz').length && $('#listagemProdutos').length) {
+if (!$('.produtos_hz').length && $listagemProdutos.length) {
 runDeferred(function(){
 // Defina os dados dos produtos em uma variável JavaScript
 var produtosPopulares = [
@@ -482,7 +510,7 @@ $.each(produtosPopulares, function(index, produto) {
 });
 
 // Insira a block de produtos após o elemento #listagemProdutos
-$('#listagemProdutos').after($produtosHz);
+$listagemProdutos.after($produtosHz);
 });
 }
 
@@ -574,8 +602,9 @@ $('.pagina-inicial .secao-banners').after(`
     `);
 }
     
-if (!$('.videoTrailer').length && $('#listagemProdutos .vitrine-3332079').length) {
-    $('#listagemProdutos .vitrine-3332079').before(`
+var $vitrineTrailer = $listagemProdutos.find('.vitrine-3332079');
+if (!$('.videoTrailer').length && $vitrineTrailer.length) {
+    $vitrineTrailer.before(`
     
     <div class="videoTrailer">
     <div class="trailer_banner">
@@ -595,16 +624,17 @@ if (!$('.videoTrailer').length && $('#listagemProdutos .vitrine-3332079').length
     `);
 }
     
-    $('#rodape .institucional').after($('.span4.selos'));
+    $rodape.find('.institucional').after($('.span4.selos'));
     $('.span4.selos ul > li:first-child').after(`
     <li> <img alt="Loja Oficial Mercado Livre" src="https://cdn.awsli.com.br/1041/1041512/arquivos/oficial-ml.png" width="135" height="43px" /> </li>
     <li> <img alt="Google Safe Browsing" src="https://cdn.awsli.com.br/1041/1041512/arquivos/google-s-b.png"/ width="127" height="38px"> </li>
     `);
     
     //redes sociais no rodape
-    $('.links-rodape-paginas').after($('#rodape .redes-sociais'));
+    var $rodapeRedesSociais = $rodape.find('.redes-sociais');
+    $('.links-rodape-paginas').after($rodapeRedesSociais);
     if (!$('#telefoneRodape').length) {
-    $('#rodape .redes-sociais').append(`
+    $rodapeRedesSociais.append(`
     <div id="telefoneRodape">
     <div class="tel_rp">
     <p>WhatsApp</p>
@@ -676,10 +706,11 @@ if (!$('.videoTrailer').length && $('#listagemProdutos .vitrine-3332079').length
     </div>
     `);
     
-    if ($('#miniBannerFullw').length && $('#listagemProdutos > ul:nth-child(5)').length) {
-    $('#listagemProdutos > ul:nth-child(5)').after($('#miniBannerFullw'));
+    var $listagemProdutosFifth = $listagemProdutos.children('ul:nth-child(5)');
+    if ($('#miniBannerFullw').length && $listagemProdutosFifth.length) {
+    $listagemProdutosFifth.after($('#miniBannerFullw'));
     }
-    $('#rodape .institucional .links-rodape-paginas ul').append(`<li><a href="https://blog.thkeys.com.br/" target="_blank">Blog</a></li>`);
+    $rodape.find('.institucional .links-rodape-paginas ul').append(`<li><a href="https://blog.thkeys.com.br/" target="_blank">Blog</a></li>`);
 
     if (!$('#explore_by-cat').length && $('.pagina-inicial .vitrine-3323787').length) {
     $('.pagina-inicial .vitrine-3323787').before(`
