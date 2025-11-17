@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+if (window.__thkeysUiInitialized) {
+return;
+}
+window.__thkeysUiInitialized = true;
+
 var tam = $(window).width();
 
 if (tam >= 768 ){
