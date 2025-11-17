@@ -40,7 +40,7 @@ $('.conteudo-topo .inferior .span8.busca-mobile').after(
 
 $('.conteudo-topo .inferior .span8.busca-mobile').after(
 '<div class="atd-top">'+
-'<a href="../conta/login"><span class="atd-txt"><strong>Login</strong><span></a>'+
+'<a href="../conta/login"><span class="atd-txt"><strong>Login</strong></span></a>'+
 '</div>'
 );
 
@@ -210,17 +210,18 @@ $('.vitrine-3323786').before($('.banner.tarja'));
 
 
 $('#cabecalho .menu.superior .nivel-um').prepend(
-'<div class="cab-nav">'+
+'<li class="cab-nav">'+
 '<a class="close-nav-full"></a>'+
 '<div class="close-nav">'+
 '<span class="category cor-principal"><i><div class="hamb-1 fundo-principal"></div><div class="hamb-1 fundo-principal"></div><div class="hamb-1 fundo-principal"></div></i></span>'+
 '</div>'+
+'<ul class="cab-nav-menu"></ul>'+
 '<div class="acc-nav">'+
 '</div>'+
-'</div>'
+'</li>'
 );
 if ($('.btn-group').length){
-$('.menu.superior .nivel-um .cab-nav').prepend('<li class="logado-sair"><a href="/conta/logout"><i class="signin-icon"></i><span>Sair</span></a></li>');
+$('.menu.superior .nivel-um .cab-nav .cab-nav-menu').prepend('<li class="logado-sair"><a href="/conta/logout"><i class="signin-icon"></i><span>Sair</span></a></li>');
 }
 if ($('#cabecalho .atalhos-mobile .icon-signout').is(':visible')) {
 //$('#cabecalho .atalhos-mobile .icon-signout').appendTo($('#cabecalho .acc-nav'));
@@ -337,7 +338,6 @@ $('.button_vermais').toggleClass('ver_menos');
 });
 
 
-if (!$('#explore').length) {
 $('.pagina-inicial .secao-banners').after(`
 
 <div id="explore">
@@ -422,9 +422,7 @@ Explore por plataforma
 </div>
 
 `);
-}
 
-if (!$('.videoTrailer').length) {
 $('#listagemProdutos .vitrine-3332079').before(`
 
 <div class="videoTrailer">
@@ -443,7 +441,6 @@ $('#listagemProdutos .vitrine-3332079').before(`
 </div>
 </div>
 `);
-}
 
 $('#rodape .institucional').after($('.span4.selos'));
 $('.span4.selos ul > li:first-child').after(`
@@ -452,7 +449,6 @@ $('.span4.selos ul > li:first-child').after(`
 `);
 
 //redes sociais no rodape
-if (!$('#telefoneRodape').length) {
 $('.links-rodape-paginas').after($('#rodape .redes-sociais'));
 $('#rodape .redes-sociais').append(`
 <div id="telefoneRodape">
@@ -483,7 +479,6 @@ $('#rodape .redes-sociais').append(`
 </div>
 </div>
 `);
-}
 
 $('.mini-banner .modulo.span4:first-child').after(`
 <div id="porPreco">
@@ -527,9 +522,7 @@ $('.mini-banner .modulo.span4:first-child').after(`
 `);
 
 $('#listagemProdutos > ul:nth-child(5)').after($('#miniBannerFullw'));
-if (!$('#rodape .institucional .links-rodape-paginas ul a[href="https://blog.thkeys.com.br/"]').length) {
 $('#rodape .institucional .links-rodape-paginas ul').append(`<li><a href="https://blog.thkeys.com.br/" target="_blank">Blog</a></li>`);
-}
 
 var tam = $(window).width();
 
@@ -542,14 +535,6 @@ $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-chil
 $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-child').append($('.listagem.aproveite-tambem'));
 
 }
-
-$('.listagem-item').append(`
-<button id="botaoWhats">
-<a target="_blank" href="https://wa.me/551152863976?text=Boas-Vindas a THKEYS! O que eu posso fazer por você hoje?">
-<i class="fa-whatsapp"></i> Compre também pelo WhatsApp
-</a>
-</button>
-`);
 
 $('.pagina-inicial .vitrine-3323787').before(`
 
