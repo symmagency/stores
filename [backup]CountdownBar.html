@@ -1,0 +1,51 @@
+<style>
+div#appendCount p#count-th:before {
+    content: "Faltam apenas: ";
+}
+
+div#appendCount p#count-th {
+    font-weight: bold;
+    margin-left: 12px;
+}
+div#appendCount p {
+    margin: 0;
+    padding: 6px 0;
+    color: #000;
+    font-size: 14px;
+}
+
+div#appendCount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffa800;
+}
+
+
+@media screen and (min-width: 768px) {
+    
+body {
+    padding-top: 0px;
+}
+
+}
+
+@media screen and (max-width: 767px) {
+/*    div#appendCount {
+        display: none!important;
+    }*/
+
+body {
+    padding-top: 0px;
+}
+}
+</style>
+
+<script>
+    $('#cabecalho').prepend(`
+<div id="appendCount">
+  <a href="https://blog.thkeys.com.br/" target="_blank"><p id="count-th_title">Código enviado por e-mail em poucos minutos.</p></a>
+</div>
+`);
+
+</script>
