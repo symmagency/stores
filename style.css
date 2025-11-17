@@ -4567,7 +4567,7 @@ form#formCalcularFrete {
 
 #menuCat {
     position: sticky;
-    top: 114px;
+    top: 86px;
     right: 0;
     left: 0;
     z-index: 1010;
@@ -5042,9 +5042,9 @@ button#botaoWhats a {
     display: block;
 }
 
-body {
+/* body {
     padding-top: 60px;
-}
+} */
 
 #cabecalho.scroll .cat {
     opacity: 1!important;
