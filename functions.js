@@ -367,7 +367,7 @@ $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-chil
 });
 }
 
-if (!$('.produtos_hz').length && $('#listagemProdutos').length) {
+if (!$('.produtos_hz').length && $('.pagina-inicial #listagemProdutos').length) {
 runDeferred(function(){
 // Defina os dados dos produtos em uma variável JavaScript
 var produtosPopulares = [
@@ -489,7 +489,7 @@ $.each(produtosPopulares, function(index, produto) {
 });
 
 // Insira a block de produtos após o elemento #listagemProdutos
-$('#listagemProdutos').after($produtosHz);
+$('.pagina-inicial #listagemProdutos').after($produtosHz);
 });
 }
 
