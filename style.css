@@ -6912,7 +6912,7 @@ div#blog *, div#blog {
     height: 20px;
     display: block;
     position: absolute;
-    top: 10px;
+    top: 120px;
     background: #ffa801;
     right: 0;
     padding: 2px 8px;
@@ -6921,6 +6921,11 @@ div#blog *, div#blog {
     font-size: 10px;
     border-radius: 2px 0 0 2px;
     box-shadow: 2px 4px rgba(0, 0, 0, .3);
+}
+
+.pagina-categoria .listagem .listagem-item:after,
+.pagina-busca .listagem .listagem-item:after {
+    top: 80px;
 }
 
 
@@ -6977,6 +6982,10 @@ div#blog *, div#blog {
 }
 
 @media screen and (max-width: 768px) {
+
+    .listagem .listagem-item:after {
+        top: 50px;
+    }
     
 .bn_title {
     left: 0;
