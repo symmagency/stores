@@ -867,5 +867,8 @@ var htmlBenefits = `
 // Insere o HTML no local desejado (substitua o seletor conforme necessário)
 $('.pagina-inicial .secao-banners').after(htmlBenefits);
 
+//Remove GetBacky do carrinho 
+$('.pagina-carrinho div#getback-widget-host').remove()
+
 
 }); 
