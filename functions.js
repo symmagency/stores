@@ -927,7 +927,7 @@ $(document).ready(function () {
   
       $('.formas-envio').appendTo($subtotalTarget);
   
-      // OBS: esta linha continua intacta (não removida)
+      // mantém sua linha original (não remove)
       $('tr.embalagem').prependTo($subtotalTarget);
   
       $hiddenRow.remove();
@@ -1029,44 +1029,41 @@ $(document).ready(function () {
       window.location.href = ADD_URL;
     });
   
+    // =====================================================
+    // INCREMENTO FINAL: MOVE A EMBALAGEM QUANDO FOR INSERIDA
+    // =====================================================
+    var tbody = document.querySelector('.tabela-carrinho tbody');
+    if (!tbody) return;
+  
+    var embalagemObserver = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        mutation.addedNodes.forEach(function (node) {
+  
+          if (!(node instanceof HTMLElement)) return;
+  
+          if (node.matches && node.matches('tr.embalagem')) {
+  
+            var $subtotal = $('.cart-resume-subtotal');
+            if (!$subtotal.length) return;
+  
+            // evita duplicar
+            if ($subtotal.find('.embalagem').length) return;
+  
+            $('<div class="embalagem"></div>')
+              .append($(node).find('td').children())
+              .prependTo($subtotal);
+  
+            $(node).remove();
+          }
+        });
+      });
+    });
+  
+    embalagemObserver.observe(tbody, {
+      childList: true
+    });
+  
   });
-  
-  
-  // =====================================================
-  // GANCHO NA EMBALAGEM (SOLUÇÃO DEFINITIVA)
-  // =====================================================
-  (function () {
-  
-    if (typeof embalagemPresente === 'undefined') return;
-    if (typeof embalagemPresente.insertDiv !== 'function') return;
-  
-    const insertDivOriginal = embalagemPresente.insertDiv;
-  
-    embalagemPresente.insertDiv = function () {
-  
-      // executa o código original da embalagem
-      insertDivOriginal.apply(this, arguments);
-  
-      // imediatamente após inserir, move para o resumo
-      setTimeout(function () {
-        var $subtotal = $('.cart-resume-subtotal');
-        var $embalagemRow = $('tr.embalagem');
-  
-        if (!$subtotal.length || !$embalagemRow.length) return;
-  
-        // evita duplicar
-        if ($subtotal.find('.embalagem').length) return;
-  
-        $('<div class="embalagem"></div>')
-          .append($embalagemRow.find('td').children())
-          .prependTo($subtotal);
-  
-        $embalagemRow.remove();
-      }, 0);
-    };
-  
-  })();
-  
   
   // =====================================================
   // TOGGLE DO CUPOM
