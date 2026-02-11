@@ -887,176 +887,177 @@ $('.pagina-inicial .secao-banners').after(htmlBenefits);
 
 $(document).ready(function () {
 
-  // =====================================================
-  // CRIA O RESUMO
-  // =====================================================
-  $('.finalizar-compra > .caixa-sombreada').append(`
-    <div class="cart-resume">
-      <div class="cart-resume-container">
-        <h3>Resumo</h3>
-        <div class="cart-resume-subtotal"></div>
-        <div class="cart-resume-total"></div>
-        <div class="cart-resume-button"></div>
-        <div class="cart-resume-coupon">
-          <div class="resume-toggle-coupon">
-            <span class="toggle-button">
-              <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/coupon.svg"/>
-              Tem um cupom?
-            </span>
-            <i class="icon-chevron-down"></i>
+    // =====================================================
+    // CRIA O RESUMO
+    // =====================================================
+    $('.finalizar-compra > .caixa-sombreada').append(`
+      <div class="cart-resume">
+        <div class="cart-resume-container">
+          <h3>Resumo</h3>
+          <div class="cart-resume-subtotal"></div>
+          <div class="cart-resume-total"></div>
+          <div class="cart-resume-button"></div>
+          <div class="cart-resume-coupon">
+            <div class="resume-toggle-coupon">
+              <span class="toggle-button">
+                <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/coupon.svg"/>
+                Tem um cupom?
+              </span>
+              <i class="icon-chevron-down"></i>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="cart-email-send">
-        <i></i>
-        <span>Envio feito por e-mail.</span>
-      </div>
-    </div>
-  `);
-
-  // =====================================================
-  // SUBTOTAL
-  // =====================================================
-  var $subtotalTarget = $('.cart-resume-subtotal');
-  var $hiddenRow = $('tr.hidden-phone.bg-dark');
-
-  if ($subtotalTarget.length && $hiddenRow.length) {
-    $('<div class="hidden-phone bg-dark"></div>')
-      .append($hiddenRow.children())
-      .appendTo($subtotalTarget);
-      $('.formas-envio').appendTo($subtotalTarget);
-      $('tr.embalagem').prependTo($subtotalTarget);
-    $hiddenRow.remove();
-  }
-
-  // =====================================================
-  // BOTÃO FINALIZAR + EMBALAGEM + FRETE
-  // =====================================================
-  var $buttonTarget = $('.cart-resume-button');
-
-  if ($buttonTarget.length) {
-    $('form[action*="/checkout/redirect/"]').appendTo($buttonTarget);
-  }
-
-  // =====================================================
-  // TOTAL
-  // =====================================================
-  var $totalTarget = $('.cart-resume-total');
-  var $totalRow = $('tr.bg-dark').has('.line-18');
-
-  if ($totalTarget.length && $totalRow.length) {
-    $('<div class="bg-dark line-18"></div>')
-      .append($totalRow.find('td').children())
-      .appendTo($totalTarget);
-    $totalRow.remove();
-  }
-
-  // =====================================================
-  // CUPOM (COM E SEM CUPOM APLICADO)
-  // =====================================================
-  var $couponTarget = $('.cart-resume-coupon');
-
-  if ($couponTarget.length) {
-
-    var $formCupomRow = $('tr.bg-dark').has('form[action*="/carrinho/cupom/"]');
-    if ($formCupomRow.length) {
-      $('<div class="bg-dark cart-coupon"></div>')
-        .append($formCupomRow.find('form'))
-        .appendTo($couponTarget);
-      $formCupomRow.remove();
-    }
-
-    var $cupomAplicadoRow = $('tr.bg-dark.possui-cupom');
-    if ($cupomAplicadoRow.length) {
-      $('<div class="bg-dark cart-coupon aplicado"></div>')
-        .append($cupomAplicadoRow.find('td').children())
-        .appendTo($couponTarget);
-      $cupomAplicadoRow.remove();
-    }
-  }
-
-  // =====================================================
-  // VALOR DO CUPOM NO SUBTOTAL
-  // =====================================================
-  var $cupomValor = $('.cupom-valor');
-  if ($cupomValor.length && $subtotalTarget.length) {
-    if ($cupomValor.is(':visible') || $.trim($cupomValor.text()) !== '') {
-      $cupomValor.appendTo($subtotalTarget);
-    }
-  }
-  
-  $('tr[data-produto-id]').addClass('cart-product');
-  $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho').prepend(`<h3>Meu carrinho </h3>`);
-  
-  // =====================================================
-  // ADICIONA BOX SURPRESA
-  // =====================================================
-  var PRODUCT_ID = '398724436';
-  var ADD_URL = 'https://www.thkeys.com.br/carrinho/produto/' + PRODUCT_ID + '/adicionar';
-
-  var $container = $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho');
-  if (!$container.length) return;
-
-  var produtoNoCarrinho = $('tr[data-produto-id="' + PRODUCT_ID + '"]').length > 0;
-  if (produtoNoCarrinho) return;
-
-  if (!$container.find('.surprise-box').length) {
-    $container.append(`
-      <div class="surprise-box">
-        <div class="box-image">
-          <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/box-cart.png" alt="Caixa surpresa para PC">
-        </div>
-        <div class="box-text">
-          <span>Ganhe <strong>1</strong> jogo surpresa para PC!</span>
-          <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/steam.png" alt="Steam">
-        </div>
-        <div class="append-price">
-	        <div class="box-price">
-	          R$ 19,90
-	        </div>
-	        <div class="box-button-add">
-	          <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/add_shopping_cart.svg" alt="Adicionar ao carrinho">
-	        </div>
+        <div class="cart-email-send">
+          <i></i>
+          <span>Envio feito por e-mail.</span>
         </div>
       </div>
     `);
-  }
-
-  $(document).on('click', '.surprise-box .box-button-add', function (e) {
-    e.preventDefault();
-    window.location.href = ADD_URL;
-  });
-
-  // =====================================================
-  // INCREMENTO ÚNICO: MOVE EMBALAGEM QUANDO APARECER
-  // =====================================================
-  var embalagemObserver = new MutationObserver(function () {
-    var $embalagemRow = $('tr.embalagem');
-
-    if ($embalagemRow.length && $('.cart-resume-subtotal').length) {
-
-      // evita duplicar
-      if ($('.cart-resume-subtotal .embalagem').length) return;
-
+  
+    // =====================================================
+    // SUBTOTAL
+    // =====================================================
+    var $subtotalTarget = $('.cart-resume-subtotal');
+    var $hiddenRow = $('tr.hidden-phone.bg-dark');
+  
+    if ($subtotalTarget.length && $hiddenRow.length) {
+      $('<div class="hidden-phone bg-dark"></div>')
+        .append($hiddenRow.children())
+        .appendTo($subtotalTarget);
+      $('.formas-envio').appendTo($subtotalTarget);
+      $('tr.embalagem').prependTo($subtotalTarget);
+      $hiddenRow.remove();
+    }
+  
+    // =====================================================
+    // BOTÃO FINALIZAR
+    // =====================================================
+    var $buttonTarget = $('.cart-resume-button');
+    if ($buttonTarget.length) {
+      $('form[action*="/checkout/redirect/"]').appendTo($buttonTarget);
+    }
+  
+    // =====================================================
+    // TOTAL
+    // =====================================================
+    var $totalTarget = $('.cart-resume-total');
+    var $totalRow = $('tr.bg-dark').has('.line-18');
+  
+    if ($totalTarget.length && $totalRow.length) {
+      $('<div class="bg-dark line-18"></div>')
+        .append($totalRow.find('td').children())
+        .appendTo($totalTarget);
+      $totalRow.remove();
+    }
+  
+    // =====================================================
+    // CUPOM
+    // =====================================================
+    var $couponTarget = $('.cart-resume-coupon');
+  
+    if ($couponTarget.length) {
+  
+      var $formCupomRow = $('tr.bg-dark').has('form[action*="/carrinho/cupom/"]');
+      if ($formCupomRow.length) {
+        $('<div class="bg-dark cart-coupon"></div>')
+          .append($formCupomRow.find('form'))
+          .appendTo($couponTarget);
+        $formCupomRow.remove();
+      }
+  
+      var $cupomAplicadoRow = $('tr.bg-dark.possui-cupom');
+      if ($cupomAplicadoRow.length) {
+        $('<div class="bg-dark cart-coupon aplicado"></div>')
+          .append($cupomAplicadoRow.find('td').children())
+          .appendTo($couponTarget);
+        $cupomAplicadoRow.remove();
+      }
+    }
+  
+    // =====================================================
+    // VALOR DO CUPOM
+    // =====================================================
+    var $cupomValor = $('.cupom-valor');
+    if ($cupomValor.length && $subtotalTarget.length) {
+      if ($cupomValor.is(':visible') || $.trim($cupomValor.text()) !== '') {
+        $cupomValor.appendTo($subtotalTarget);
+      }
+    }
+  
+    $('tr[data-produto-id]').addClass('cart-product');
+    $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho')
+      .prepend(`<h3>Meu carrinho </h3>`);
+  
+    // =====================================================
+    // SURPRISE BOX
+    // =====================================================
+    var PRODUCT_ID = '398724436';
+    var ADD_URL = 'https://www.thkeys.com.br/carrinho/produto/' + PRODUCT_ID + '/adicionar';
+  
+    var $container = $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho');
+    if (!$container.length) return;
+  
+    var produtoNoCarrinho = $('tr[data-produto-id="' + PRODUCT_ID + '"]').length > 0;
+    if (produtoNoCarrinho) return;
+  
+    if (!$container.find('.surprise-box').length) {
+      $container.append(`
+        <div class="surprise-box">
+          <div class="box-image">
+            <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/box-cart.png" alt="Caixa surpresa para PC">
+          </div>
+          <div class="box-text">
+            <span>Ganhe <strong>1</strong> jogo surpresa para PC!</span>
+            <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/steam.png" alt="Steam">
+          </div>
+          <div class="append-price">
+            <div class="box-price">R$ 19,90</div>
+            <div class="box-button-add">
+              <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/add_shopping_cart.svg" alt="Adicionar ao carrinho">
+            </div>
+          </div>
+        </div>
+      `);
+    }
+  
+    $(document).on('click', '.surprise-box .box-button-add', function (e) {
+      e.preventDefault();
+      window.location.href = ADD_URL;
+    });
+  
+    // =====================================================
+    // INCREMENTO FINAL: OBSERVA E MOVE EMBALAGEM (ROBUSTO)
+    // =====================================================
+    var embalagemObserver = new MutationObserver(function () {
+  
+      var $subtotal = $('.cart-resume-subtotal');
+      var $embalagemRow = $('tr.embalagem');
+  
+      if (!$subtotal.length || !$embalagemRow.length) return;
+  
+      // evita duplicação
+      if ($subtotal.find('.embalagem').length) return;
+  
       $('<div class="embalagem"></div>')
         .append($embalagemRow.find('td').children())
-        .prependTo('.cart-resume-subtotal');
-
+        .prependTo($subtotal);
+  
       $embalagemRow.remove();
-    }
+  
+    });
+  
+    embalagemObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  
   });
-
-  embalagemObserver.observe(document.body, {
-    childList: true,
-    subtree: true
+  
+  // =====================================================
+  // TOGGLE DO CUPOM
+  // =====================================================
+  $(document).on('click', '.resume-toggle-coupon', function (e) {
+    e.preventDefault();
+    $('.cart-resume-coupon').toggleClass('open');
   });
-
-});
-
-// =====================================================
-// TOGGLE DO CUPOM (FORA DO READY)
-// =====================================================
-$(document).on('click', '.resume-toggle-coupon', function (e) {
-  e.preventDefault();
-  $('.cart-resume-coupon').toggleClass('open');
-});
+  
