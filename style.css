@@ -7674,6 +7674,7 @@ body {
 	color: #faa604;
 	border: 1px dashed var(--cor-da-marca);
 	text-wrap: nowrap;
+    margin-left: 20px;
 }
 
 .pagina-carrinho:not(.carrinho-checkout)
@@ -7986,7 +7987,7 @@ body {
 }
 
 .embalagem td {
-    padding: 20px;
+    padding: 20px!important;
 }
 
 @media screen and (max-width: 768px) {
