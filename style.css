@@ -7544,6 +7544,10 @@ body {
 
 /* CARRINHO E SURPRISE BOX */
 
+.cart-resume {
+    min-width: 400px;
+}
+
 .pagina-carrinho:not(.carrinho-checkout) #corpo > .conteiner {
 	max-width: 1300px;
 }
@@ -7981,6 +7985,12 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+
+    .cart-resume-button form, .cart-resume-button {
+        padding: 0 !important;
+        margin: 0;
+    }
+    
 	.pagina-carrinho:not(.carrinho-checkout)
 		.finalizar-compra
 		> .caixa-sombreada {
@@ -8008,6 +8018,14 @@ body {
 		border-radius: 5px;
 		margin: 0;
 	}
+
+    .cupom-valor strong:first-child {
+        display: none;
+    }
+
+    .cart-resume {
+        min-width: 100%;
+    }
 
 	.pagina-carrinho:not(.carrinho-checkout) .cart-product .excluir {
 		position: absolute;
