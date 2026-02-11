@@ -7985,7 +7985,19 @@ body {
     display: none !important;
 }
 
+.embalagem td {
+    padding: 20px;
+}
+
 @media screen and (max-width: 768px) {
+
+    .pagina-carrinho:not(.carrinho-checkout) .embalagem {
+        margin: 20px 0 0;
+    }
+
+    .surprise-box {
+        margin-top: 20px;
+    }
 
     .cart-resume-button form, .cart-resume-button {
         padding: 0 !important;
