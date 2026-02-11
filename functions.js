@@ -926,6 +926,8 @@ $(document).ready(function () {
         .appendTo($subtotalTarget);
   
       $('.formas-envio').appendTo($subtotalTarget);
+  
+      // OBS: esta linha continua intacta (não removida)
       $('tr.embalagem').prependTo($subtotalTarget);
   
       $hiddenRow.remove();
@@ -1027,42 +1029,44 @@ $(document).ready(function () {
       window.location.href = ADD_URL;
     });
   
-    // =====================================================
-    // SOLUÇÃO DEFINITIVA: POLLING PARA EMBALAGEM
-    // =====================================================
-    (function () {
+  });
   
-      var tentativas = 0;
-      var maxTentativas = 30; // ~3s
   
-      var intervalo = setInterval(function () {
-        tentativas++;
+  // =====================================================
+  // GANCHO NA EMBALAGEM (SOLUÇÃO DEFINITIVA)
+  // =====================================================
+  (function () {
   
+    if (typeof embalagemPresente === 'undefined') return;
+    if (typeof embalagemPresente.insertDiv !== 'function') return;
+  
+    const insertDivOriginal = embalagemPresente.insertDiv;
+  
+    embalagemPresente.insertDiv = function () {
+  
+      // executa o código original da embalagem
+      insertDivOriginal.apply(this, arguments);
+  
+      // imediatamente após inserir, move para o resumo
+      setTimeout(function () {
         var $subtotal = $('.cart-resume-subtotal');
         var $embalagemRow = $('tr.embalagem');
   
-        if ($subtotal.length && $embalagemRow.length) {
+        if (!$subtotal.length || !$embalagemRow.length) return;
   
-          // remove qualquer versão anterior
-          $subtotal.find('.embalagem').remove();
+        // evita duplicar
+        if ($subtotal.find('.embalagem').length) return;
   
-          $('<div class="embalagem"></div>')
-            .append($embalagemRow.find('td').children())
-            .prependTo($subtotal);
+        $('<div class="embalagem"></div>')
+          .append($embalagemRow.find('td').children())
+          .prependTo($subtotal);
   
-          $embalagemRow.remove();
-          clearInterval(intervalo);
-        }
+        $embalagemRow.remove();
+      }, 0);
+    };
   
-        if (tentativas >= maxTentativas) {
-          clearInterval(intervalo);
-        }
+  })();
   
-      }, 100);
-  
-    })();
-  
-  });
   
   // =====================================================
   // TOGGLE DO CUPOM
