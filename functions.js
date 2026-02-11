@@ -1043,7 +1043,9 @@ $(document).ready(function () {
       window.location.href = ADD_URL;
     });
 
-    $('tr.embalagem').before($('.surprise-box'));
+    if ($('.embalagem').length && $('.surprise-box').length) {
+        $('.surprise-box').before($('.embalagem'));
+      }
   
   });
   
