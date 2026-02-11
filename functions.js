@@ -924,28 +924,8 @@ $(document).ready(function () {
       $('<div class="hidden-phone bg-dark"></div>')
         .append($hiddenRow.children())
         .appendTo($subtotalTarget);
-
-      $('.formas-envio').appendTo($subtotalTarget);
-      (function moveEmbalagemRow() {
-        var $embalagemRow = $('tr.embalagem');
-        if ($embalagemRow.length) {
-          $embalagemRow.prependTo($subtotalTarget);
-        } else {
-          setTimeout(moveEmbalagemRow, 150);
-        }
-      })();
-
-      // =====================================================
-      // INCREMENTO: REMOVE FORMAS DE ENVIO SE UL ESTIVER VAZIO
-      // =====================================================
-      var $formasEnvio = $('.formas-envio');
-      if ($formasEnvio.length) {
-        var temOpcoesFrete = $formasEnvio.find('ul li').length > 0;
-        if (!temOpcoesFrete) {
-          $formasEnvio.remove();
-        }
-      }
-
+        $('.formas-envio').appendTo($subtotalTarget);
+        $('tr.embalagem').prependTo($subtotalTarget);
       $hiddenRow.remove();
     }
   
@@ -1006,21 +986,34 @@ $(document).ready(function () {
     }
     
     $('tr[data-produto-id]').addClass('cart-product');
-    $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho')
-      .prepend(`<h3>Meu carrinho </h3>`);
+    $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho').prepend(`<h3>Meu carrinho </h3>`);
     
-    // =====================================================
+     // =====================================================
     // ADICIONA BOX SURPRESA
     // =====================================================
+  
+  
+  
     var PRODUCT_ID = '398724436';
     var ADD_URL = 'https://www.thkeys.com.br/carrinho/produto/' + PRODUCT_ID + '/adicionar';
   
+    // =====================================================
+    // CONTEXTO: apenas página de carrinho (não checkout)
+    // =====================================================
     var $container = $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho');
     if (!$container.length) return;
   
+    // =====================================================
+    // VERIFICA SE O PRODUTO JÁ ESTÁ NO CARRINHO
+    // =====================================================
     var produtoNoCarrinho = $('tr[data-produto-id="' + PRODUCT_ID + '"]').length > 0;
+  
+    // Se já estiver no carrinho, NÃO mostra o box
     if (produtoNoCarrinho) return;
   
+    // =====================================================
+    // INSERE A SURPRISE BOX
+    // =====================================================
     if (!$container.find('.surprise-box').length) {
       $container.append(`
         <div class="surprise-box">
@@ -1051,12 +1044,13 @@ $(document).ready(function () {
       window.location.href = ADD_URL;
     });
   
-});
+  });
   
-// =====================================================
-// TOGGLE DO CUPOM (FORA DO READY)
-// =====================================================
-$(document).on('click', '.resume-toggle-coupon', function (e) {
-  e.preventDefault();
-  $('.cart-resume-coupon').toggleClass('open');
-});
+  // =====================================================
+  // TOGGLE DO CUPOM (FORA DO READY)
+  // =====================================================
+  $(document).on('click', '.resume-toggle-coupon', function (e) {
+    e.preventDefault();
+    $('.cart-resume-coupon').toggleClass('open');
+  });
+  
