@@ -885,10 +885,6 @@ $('.pagina-inicial .secao-banners').after(htmlBenefits);
 // CARRINHO E SURPRISE BOX
 // =====================================================
 
-// =====================================================
-// CARRINHO E SURPRISE BOX
-// =====================================================
-
 $(document).ready(function () {
 
     // =====================================================
@@ -928,8 +924,10 @@ $(document).ready(function () {
       $('<div class="hidden-phone bg-dark"></div>')
         .append($hiddenRow.children())
         .appendTo($subtotalTarget);
+  
       $('.formas-envio').appendTo($subtotalTarget);
       $('tr.embalagem').prependTo($subtotalTarget);
+  
       $hiddenRow.remove();
     }
   
@@ -955,7 +953,7 @@ $(document).ready(function () {
     }
   
     // =====================================================
-    // CUPOM (COM E SEM CUPOM APLICADO)
+    // CUPOM
     // =====================================================
     var $couponTarget = $('.cart-resume-coupon');
   
@@ -979,7 +977,7 @@ $(document).ready(function () {
     }
   
     // =====================================================
-    // VALOR DO CUPOM NO SUBTOTAL
+    // VALOR DO CUPOM
     // =====================================================
     var $cupomValor = $('.cupom-valor');
     if ($cupomValor.length && $subtotalTarget.length) {
@@ -993,7 +991,7 @@ $(document).ready(function () {
       .prepend(`<h3>Meu carrinho </h3>`);
   
     // =====================================================
-    // ADICIONA BOX SURPRESA
+    // SURPRISE BOX
     // =====================================================
     var PRODUCT_ID = '398724436';
     var ADD_URL = 'https://www.thkeys.com.br/carrinho/produto/' + PRODUCT_ID + '/adicionar';
@@ -1029,31 +1027,41 @@ $(document).ready(function () {
       window.location.href = ADD_URL;
     });
   
-  });
+    // =====================================================
+    // SOLUÇÃO DEFINITIVA: POLLING PARA EMBALAGEM
+    // =====================================================
+    (function () {
   
-  // =====================================================
-  // EXECUÇÃO TARDIA: MOVE EMBALAGEM APÓS TUDO CARREGAR
-  // =====================================================
-  function moverEmbalagem() {
-    var $subtotal = $('.cart-resume-subtotal');
-    var $embalagemRow = $('tr.embalagem');
+      var tentativas = 0;
+      var maxTentativas = 30; // ~3s
   
-    if (!$subtotal.length || !$embalagemRow.length) return;
+      var intervalo = setInterval(function () {
+        tentativas++;
   
-    // evita duplicação
-    if ($subtotal.find('.embalagem').length) return;
+        var $subtotal = $('.cart-resume-subtotal');
+        var $embalagemRow = $('tr.embalagem');
   
-    $('<div class="embalagem"></div>')
-      .append($embalagemRow.find('td').children())
-      .prependTo($subtotal);
+        if ($subtotal.length && $embalagemRow.length) {
   
-    $embalagemRow.remove();
-  }
+          // remove qualquer versão anterior
+          $subtotal.find('.embalagem').remove();
   
-  $(window).on('load', function () {
-    setTimeout(function () {
-      moverEmbalagem();
-    }, 300);
+          $('<div class="embalagem"></div>')
+            .append($embalagemRow.find('td').children())
+            .prependTo($subtotal);
+  
+          $embalagemRow.remove();
+          clearInterval(intervalo);
+        }
+  
+        if (tentativas >= maxTentativas) {
+          clearInterval(intervalo);
+        }
+  
+      }, 100);
+  
+    })();
+  
   });
   
   // =====================================================
