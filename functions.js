@@ -885,6 +885,10 @@ $('.pagina-inicial .secao-banners').after(htmlBenefits);
 // CARRINHO E SURPRISE BOX
 // =====================================================
 
+// =====================================================
+// CARRINHO E SURPRISE BOX
+// =====================================================
+
 $(document).ready(function () {
 
     // =====================================================
@@ -951,7 +955,7 @@ $(document).ready(function () {
     }
   
     // =====================================================
-    // CUPOM
+    // CUPOM (COM E SEM CUPOM APLICADO)
     // =====================================================
     var $couponTarget = $('.cart-resume-coupon');
   
@@ -975,7 +979,7 @@ $(document).ready(function () {
     }
   
     // =====================================================
-    // VALOR DO CUPOM
+    // VALOR DO CUPOM NO SUBTOTAL
     // =====================================================
     var $cupomValor = $('.cupom-valor');
     if ($cupomValor.length && $subtotalTarget.length) {
@@ -989,7 +993,7 @@ $(document).ready(function () {
       .prepend(`<h3>Meu carrinho </h3>`);
   
     // =====================================================
-    // SURPRISE BOX
+    // ADICIONA BOX SURPRESA
     // =====================================================
     var PRODUCT_ID = '398724436';
     var ADD_URL = 'https://www.thkeys.com.br/carrinho/produto/' + PRODUCT_ID + '/adicionar';
@@ -1025,32 +1029,31 @@ $(document).ready(function () {
       window.location.href = ADD_URL;
     });
   
-    // =====================================================
-    // INCREMENTO FINAL: OBSERVA E MOVE EMBALAGEM (ROBUSTO)
-    // =====================================================
-    var embalagemObserver = new MutationObserver(function () {
+  });
   
-      var $subtotal = $('.cart-resume-subtotal');
-      var $embalagemRow = $('tr.embalagem');
+  // =====================================================
+  // EXECUÇÃO TARDIA: MOVE EMBALAGEM APÓS TUDO CARREGAR
+  // =====================================================
+  function moverEmbalagem() {
+    var $subtotal = $('.cart-resume-subtotal');
+    var $embalagemRow = $('tr.embalagem');
   
-      if (!$subtotal.length || !$embalagemRow.length) return;
+    if (!$subtotal.length || !$embalagemRow.length) return;
   
-      // evita duplicação
-      if ($subtotal.find('.embalagem').length) return;
+    // evita duplicação
+    if ($subtotal.find('.embalagem').length) return;
   
-      $('<div class="embalagem"></div>')
-        .append($embalagemRow.find('td').children())
-        .prependTo($subtotal);
+    $('<div class="embalagem"></div>')
+      .append($embalagemRow.find('td').children())
+      .prependTo($subtotal);
   
-      $embalagemRow.remove();
+    $embalagemRow.remove();
+  }
   
-    });
-  
-    embalagemObserver.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-  
+  $(window).on('load', function () {
+    setTimeout(function () {
+      moverEmbalagem();
+    }, 300);
   });
   
   // =====================================================
