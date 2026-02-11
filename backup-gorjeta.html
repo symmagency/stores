@@ -1,0 +1,80 @@
+<script>
+let ativarEmbalagemPresente = true;
+let embalagemIDProduto = 229854609;
+let tituloTextoEmbalagem = 'Deixe uma gorjeta e seja o herói da nossa jornada! (opcional)';
+let valordaEmbalagem = "R$ 5,00";
+
+// Objeto principal para manipular a embalagem de presente
+const embalagemPresente = {
+  insertDiv: () => {
+    // Só executa se a funcionalidade estiver ativada
+    if (ativarEmbalagemPresente) {
+      // Adiciona a linha do checkbox na tabela do carrinho
+      $('.tabela-carrinho tbody tr.hidden-phone.bg-dark').before(
+        `
+        <tr class="embalagem">
+          <td colspan="3" class="hidden-phone"></td>
+          <td colspan="3">
+            <label>
+              <input id="checkbox_embalagem" type="checkbox" />
+              <svg class="" width="512" height="512" enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 293.37 293.37" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                <!-- SVG OMITIDO PARA RESUMO -->
+              </svg>
+              ${tituloTextoEmbalagem} - <strong>${valordaEmbalagem}</strong>
+            </label>
+          </td>
+        </tr>
+        `
+      );
+
+      // Evento de clique no checkbox
+      $('#checkbox_embalagem').click(function () {
+        if ($(this).is(':checked')) {
+          // Adiciona embalagem via AJAX
+          $.ajax({
+            type: 'POST',
+            url: '/carrinho/produto/' + embalagemIDProduto + '/adicionar',
+            success: function () {
+              setTimeout(() => {
+                window.location.reload();
+              }, 500);
+            }
+          });
+        } else {
+          // Remove embalagem via AJAX
+          $.ajax({
+            type: 'POST',
+            url: '/carrinho/produto/' + embalagemIDProduto + '/remover',
+            success: function () {
+              setTimeout(() => {
+                window.location.reload();
+              }, 500);
+            }
+          });
+        }
+      });
+
+      // Marca o checkbox se o produto de embalagem já estiver no carrinho
+      $('.tabela-carrinho tbody tr[data-produto-id]').each(function (i, el) {
+        if ($(this).attr('data-produto-id') == embalagemIDProduto) {
+          $(el).hide();
+          $('#checkbox_embalagem').attr('checked', true);
+        }
+      });
+    }
+  },
+  // Inicializa a função
+  init: function () {
+    this.insertDiv();
+  }
+};
+
+// Executa a função apenas se estiver na página do carrinho
+$(document).ready(function () {
+  if (window.location.host == 'www.thkeys.com.br') {
+    embalagemPresente.init();
+  }
+});
+</script>
+
+<link rel="stylesheet" href="https://cdn.awsli.com.br/1248/1248264/arquivos/embalagem-presente.css" />

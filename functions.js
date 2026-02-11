@@ -925,7 +925,6 @@ $(document).ready(function () {
         .append($hiddenRow.children())
         .appendTo($subtotalTarget);
         $('.formas-envio').appendTo($subtotalTarget);
-        $('tr.embalagem').prependTo($subtotalTarget);
       $hiddenRow.remove();
     }
   
@@ -1043,6 +1042,8 @@ $(document).ready(function () {
       e.preventDefault();
       window.location.href = ADD_URL;
     });
+
+    $('tr.embalagem').before($('.surprise-box'));
   
   });
   

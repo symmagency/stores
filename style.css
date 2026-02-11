@@ -7656,7 +7656,7 @@ body {
 	font-size: 13px;
 }
 
-.pagina-carrinho:not(.carrinho-checkout) tr.embalagem > td.hidden-phone {
+.pagina-carrinho:not(.carrinho-checkout) .embalagem > td.hidden-phone {
 	display: none;
 }
 
@@ -7884,7 +7884,7 @@ body {
 	margin: 0;
 }
 
-.pagina-carrinho:not(.carrinho-checkout) tr.embalagem {
+.pagina-carrinho:not(.carrinho-checkout) .embalagem {
 	border: 1px solid rgba(255, 255, 255, 0.1) !important;
 	box-sizing: border-box;
 	display: flex;
