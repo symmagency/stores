@@ -924,19 +924,16 @@ $(document).ready(function () {
       $('<div class="hidden-phone bg-dark"></div>')
         .append($hiddenRow.children())
         .appendTo($subtotalTarget);
-  
-      $('.formas-envio').appendTo($subtotalTarget);
-  
-      // mantém sua linha original (não remove)
-      $('tr.embalagem').prependTo($subtotalTarget);
-  
+        $('.formas-envio').appendTo($subtotalTarget);
+        $('tr.embalagem').prependTo($subtotalTarget);
       $hiddenRow.remove();
     }
   
     // =====================================================
-    // BOTÃO FINALIZAR
+    // BOTÃO FINALIZAR + EMBALAGEM + FRETE
     // =====================================================
     var $buttonTarget = $('.cart-resume-button');
+  
     if ($buttonTarget.length) {
       $('form[action*="/checkout/redirect/"]').appendTo($buttonTarget);
     }
@@ -955,7 +952,7 @@ $(document).ready(function () {
     }
   
     // =====================================================
-    // CUPOM
+    // CUPOM (COM E SEM CUPOM APLICADO)
     // =====================================================
     var $couponTarget = $('.cart-resume-coupon');
   
@@ -979,7 +976,7 @@ $(document).ready(function () {
     }
   
     // =====================================================
-    // VALOR DO CUPOM
+    // VALOR DO CUPOM NO SUBTOTAL
     // =====================================================
     var $cupomValor = $('.cupom-valor');
     if ($cupomValor.length && $subtotalTarget.length) {
@@ -987,23 +984,36 @@ $(document).ready(function () {
         $cupomValor.appendTo($subtotalTarget);
       }
     }
-  
+    
     $('tr[data-produto-id]').addClass('cart-product');
-    $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho')
-      .prepend(`<h3>Meu carrinho </h3>`);
+    $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho').prepend(`<h3>Meu carrinho </h3>`);
+    
+     // =====================================================
+    // ADICIONA BOX SURPRESA
+    // =====================================================
   
-    // =====================================================
-    // SURPRISE BOX
-    // =====================================================
+  
+  
     var PRODUCT_ID = '398724436';
     var ADD_URL = 'https://www.thkeys.com.br/carrinho/produto/' + PRODUCT_ID + '/adicionar';
   
+    // =====================================================
+    // CONTEXTO: apenas página de carrinho (não checkout)
+    // =====================================================
     var $container = $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho');
     if (!$container.length) return;
   
+    // =====================================================
+    // VERIFICA SE O PRODUTO JÁ ESTÁ NO CARRINHO
+    // =====================================================
     var produtoNoCarrinho = $('tr[data-produto-id="' + PRODUCT_ID + '"]').length > 0;
+  
+    // Se já estiver no carrinho, NÃO mostra o box
     if (produtoNoCarrinho) return;
   
+    // =====================================================
+    // INSERE A SURPRISE BOX
+    // =====================================================
     if (!$container.find('.surprise-box').length) {
       $container.append(`
         <div class="surprise-box">
@@ -1015,58 +1025,29 @@ $(document).ready(function () {
             <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/steam.png" alt="Steam">
           </div>
           <div class="append-price">
-            <div class="box-price">R$ 19,90</div>
-            <div class="box-button-add">
-              <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/add_shopping_cart.svg" alt="Adicionar ao carrinho">
-            </div>
+              <div class="box-price">
+                R$ 19,90
+              </div>
+              <div class="box-button-add">
+                <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/add_shopping_cart.svg" alt="Adicionar ao carrinho">
+              </div>
           </div>
         </div>
       `);
     }
   
+    // =====================================================
+    // CLICK → ADICIONA O PRODUTO PELO ID
+    // =====================================================
     $(document).on('click', '.surprise-box .box-button-add', function (e) {
       e.preventDefault();
       window.location.href = ADD_URL;
     });
   
-    // =====================================================
-    // INCREMENTO FINAL: MOVE A EMBALAGEM QUANDO FOR INSERIDA
-    // =====================================================
-    var tbody = document.querySelector('.tabela-carrinho tbody');
-    if (!tbody) return;
-  
-    var embalagemObserver = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        mutation.addedNodes.forEach(function (node) {
-  
-          if (!(node instanceof HTMLElement)) return;
-  
-          if (node.matches && node.matches('tr.embalagem')) {
-  
-            var $subtotal = $('.cart-resume-subtotal');
-            if (!$subtotal.length) return;
-  
-            // evita duplicar
-            if ($subtotal.find('.embalagem').length) return;
-  
-            $('<div class="embalagem"></div>')
-              .append($(node).find('td').children())
-              .prependTo($subtotal);
-  
-            $(node).remove();
-          }
-        });
-      });
-    });
-  
-    embalagemObserver.observe(tbody, {
-      childList: true
-    });
-  
   });
   
   // =====================================================
-  // TOGGLE DO CUPOM
+  // TOGGLE DO CUPOM (FORA DO READY)
   // =====================================================
   $(document).on('click', '.resume-toggle-coupon', function (e) {
     e.preventDefault();
