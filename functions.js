@@ -924,13 +924,36 @@ $(document).ready(function () {
       $('<div class="hidden-phone bg-dark"></div>')
         .append($hiddenRow.children())
         .appendTo($subtotalTarget);
-        $('.formas-envio').appendTo($subtotalTarget);
-        $('tr.embalagem').prependTo($subtotalTarget);
+  
+      $('.formas-envio').appendTo($subtotalTarget);
+  
+      // =====================================================
+      // INCREMENTO 1: marca frete vazio com classe
+      // =====================================================
+      var $formasEnvio = $('.formas-envio');
+      if ($formasEnvio.length) {
+        var freteVazio = $formasEnvio.find('ul li').length === 0;
+        if (freteVazio) {
+          $formasEnvio.addClass('is-empty');
+        }
+      }
+  
+      // =====================================================
+      // INCREMENTO 2: corrige movimentação da embalagem
+      // =====================================================
+      var $embalagemRow = $('tr.embalagem');
+      if ($embalagemRow.length) {
+        $('<div class="embalagem"></div>')
+          .append($embalagemRow.find('td').children())
+          .prependTo($subtotalTarget);
+        $embalagemRow.remove();
+      }
+  
       $hiddenRow.remove();
     }
   
     // =====================================================
-    // BOTÃO FINALIZAR + EMBALAGEM + FRETE
+    // BOTÃO FINALIZAR
     // =====================================================
     var $buttonTarget = $('.cart-resume-button');
   
@@ -984,36 +1007,23 @@ $(document).ready(function () {
         $cupomValor.appendTo($subtotalTarget);
       }
     }
-    
+  
     $('tr[data-produto-id]').addClass('cart-product');
-    $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho').prepend(`<h3>Meu carrinho </h3>`);
-    
-     // =====================================================
-    // ADICIONA BOX SURPRESA
+    $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho')
+      .prepend(`<h3>Meu carrinho </h3>`);
+  
     // =====================================================
-  
-  
-  
+    // SURPRISE BOX
+    // =====================================================
     var PRODUCT_ID = '398724436';
     var ADD_URL = 'https://www.thkeys.com.br/carrinho/produto/' + PRODUCT_ID + '/adicionar';
   
-    // =====================================================
-    // CONTEXTO: apenas página de carrinho (não checkout)
-    // =====================================================
     var $container = $('.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho');
     if (!$container.length) return;
   
-    // =====================================================
-    // VERIFICA SE O PRODUTO JÁ ESTÁ NO CARRINHO
-    // =====================================================
     var produtoNoCarrinho = $('tr[data-produto-id="' + PRODUCT_ID + '"]').length > 0;
-  
-    // Se já estiver no carrinho, NÃO mostra o box
     if (produtoNoCarrinho) return;
   
-    // =====================================================
-    // INSERE A SURPRISE BOX
-    // =====================================================
     if (!$container.find('.surprise-box').length) {
       $container.append(`
         <div class="surprise-box">
@@ -1025,20 +1035,15 @@ $(document).ready(function () {
             <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/steam.png" alt="Steam">
           </div>
           <div class="append-price">
-              <div class="box-price">
-                R$ 19,90
-              </div>
-              <div class="box-button-add">
-                <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/add_shopping_cart.svg" alt="Adicionar ao carrinho">
-              </div>
+            <div class="box-price">R$ 19,90</div>
+            <div class="box-button-add">
+              <img src="https://cdn.awsli.com.br/2775/2775575/arquivos/add_shopping_cart.svg" alt="Adicionar ao carrinho">
+            </div>
           </div>
         </div>
       `);
     }
   
-    // =====================================================
-    // CLICK → ADICIONA O PRODUTO PELO ID
-    // =====================================================
     $(document).on('click', '.surprise-box .box-button-add', function (e) {
       e.preventDefault();
       window.location.href = ADD_URL;
@@ -1047,7 +1052,7 @@ $(document).ready(function () {
   });
   
   // =====================================================
-  // TOGGLE DO CUPOM (FORA DO READY)
+  // TOGGLE DO CUPOM
   // =====================================================
   $(document).on('click', '.resume-toggle-coupon', function (e) {
     e.preventDefault();

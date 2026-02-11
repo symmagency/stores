@@ -7858,6 +7858,7 @@ body {
 .pagina-carrinho:not(.carrinho-checkout) .formas-envio {
 	padding: 16px 24px;
 	border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
 }
 
 .pagina-carrinho:not(.carrinho-checkout) .formas-envio b.prazo {
@@ -7990,7 +7991,7 @@ body {
         padding: 0 !important;
         margin: 0;
     }
-    
+
 	.pagina-carrinho:not(.carrinho-checkout)
 		.finalizar-compra
 		> .caixa-sombreada {
