@@ -589,6 +589,7 @@ if (!$('.videoTrailer').length && $('#listagemProdutos .vitrine-3332079').length
       <strong>Ofertas em destaque</strong>
       <span>Jogos selecionados pela THKeys.</span>
     </div>
+    <div class="append-dbanners">
     <div class="trailer_banner">
     <a href="https://www.thkeys.com.br/pc-">
       <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/oferta-qn.png" alt="">
@@ -600,6 +601,7 @@ if (!$('.videoTrailer').length && $('#listagemProdutos .vitrine-3332079').length
     <div class="append_preco_btn">
     </div>
     </a>
+    </div>
     </div>
     </div>
     `);
