@@ -585,13 +585,17 @@ if (!$('.videoTrailer').length && $('#listagemProdutos .vitrine-3332079').length
     $('#listagemProdutos .vitrine-3332079').before(`
     
     <div class="videoTrailer">
+    <div class="banner-title">
+      <strong>Ofertas em destaque</strong>
+      <span>Jogos selecionados pela THKeys.</span>
+    </div>
     <div class="trailer_banner">
-    <a target="_blank" href="#">
+    <a href="https://www.thkeys.com.br/pc-">
       <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/oferta-qn.png" alt="">
     </a>
     </div>
     <div class="jogo_banner">
-    <a href="#">
+    <a href="https://www.thkeys.com.br/pc-">
     <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/jogo-brinde-pc.png" alt="">
     <div class="append_preco_btn">
     </div>
