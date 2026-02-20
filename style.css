@@ -1653,40 +1653,19 @@ div#porPreco {
 }
 
 .trailer_banner > a {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 140px;
-    height: 90px;
-    z-index: 1;
-    margin: auto;
-    text-align: center;
-    line-height: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #fff;
-    font-size: 16px;
-}
-
-.trailer_banner > a i:before {
-    content: "";
-    width: 60px;
-    height: 60px;
-    background: url(https://cdn.awsli.com.br/2679/2679412/arquivos/play_arrow.svg);
+    width: 100%;
     display: block;
+    position: relative;
 }
-
 .trailer_banner {
     width: 100%;
     position: relative;
-    max-width: 953px;
+    flex: 1;
 }
 
 .jogo_banner {
     position: relative;
+    flex: 1;
 }
 
 .append_preco_btn {

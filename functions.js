@@ -586,7 +586,7 @@ if (!$('.videoTrailer').length && $('#listagemProdutos .vitrine-3332079').length
     
     <div class="videoTrailer">
     <div class="trailer_banner">
-    <a target="_blank" href="#"><i></i> Assista ao trailer
+    <a target="_blank" href="#">
       <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/oferta-qn.png" alt="">
     </a>
     </div>
