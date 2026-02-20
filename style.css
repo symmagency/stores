@@ -1648,8 +1648,38 @@ div#porPreco {
 
 .videoTrailer {
     display: flex;
+    flex-direction: column;
     gap: 20px;
     margin-top: 40px;
+}
+
+.append-dbanners {
+    display: flex;
+    gap: 20px;
+}
+
+.append-dbanners {
+    display: flex;
+    gap: 20px;
+}
+
+.banner-title strong {
+    font-size: 16px;
+}
+
+.banner-title * {
+    color: #fff;
+}
+
+.banner-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.banner-title span {
+    font-size: 14px;
+    opacity: .7;
+    margin-top: 4px;
 }
 
 .trailer_banner > a {
@@ -5045,6 +5075,10 @@ button#botaoWhats a {
 }
 
 .videoTrailer {
+    flex-direction: column;
+}
+
+.append-dbanners {
     flex-direction: column;
 }
 
