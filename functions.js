@@ -586,15 +586,14 @@ if (!$('.videoTrailer').length && $('#listagemProdutos .vitrine-3332079').length
     
     <div class="videoTrailer">
     <div class="trailer_banner">
-    <a target="_blank" href="https://www.youtube.com/watch?v=O6MdexNSy3o&t=1s"><i></i> Assista ao trailer</a>
-    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/the-last-of-us-youtube.jpg" alt="">
+    <a target="_blank" href="#"><i></i> Assista ao trailer
+      <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/oferta-qn.png" alt="">
+    </a>
     </div>
     <div class="jogo_banner">
-    <a href="https://www.thkeys.com.br/the-last-of-us-part-ii-remastered-pc-codigo-digital">
-    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/the-last-of-us-2-remastered-pc.png" alt="">
+    <a href="#">
+    <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/jogo-brinde-pc.png" alt="">
     <div class="append_preco_btn">
-    <div class="preco"> R$ 189,90 <span>no pix</span></div>
-    <button class="btn">Comprar agora <i></i></button>
     </div>
     </a>
     </div>
