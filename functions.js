@@ -591,7 +591,7 @@ if (!$('.videoTrailer').length && $('#listagemProdutos .vitrine-3332079').length
     </div>
     <div class="append-dbanners">
     <div class="trailer_banner">
-    <a href="https://www.thkeys.com.br/pc-">
+    <a href="https://www.thkeys.com.br/pc-?sort=%2Bpreco">
       <img src="https://cdn.awsli.com.br/1041/1041512/arquivos/oferta-qn.png" alt="">
     </a>
     </div>
