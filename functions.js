@@ -61,8 +61,8 @@ $('.carrinho>a>i').addClass('cor-principal');
 $('.atd-top ul.drop-atd').prepend($('.barra-inicial .canais-contato.span9>ul>li'));
 
 
-$('.pagina-produto .produto > .row-fluid .info-principal-produto').prependTo('.pagina-produto .produto');
-$('.pagina-produto .produto > .row-fluid .span6 > .principal').prepend($('.pagina-produto .produto > .info-principal-produto .codigo-produto'));
+// $('.pagina-produto .produto > .row-fluid .info-principal-produto').prependTo('.pagina-produto .produto');
+// $('.pagina-produto .produto > .row-fluid .span6 > .principal').prepend($('.pagina-produto .produto > .info-principal-produto .codigo-produto'));
 $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-child').append($('.pagina-produto #buy-together-position1'));
 $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-child').append($('.abas-custom'));
 $('.pagina-produto #corpo .produto > .row-fluid:nth-child(2) > .span6:first-child').append($('.pagina-produto #buy-together-position2'));
