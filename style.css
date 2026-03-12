@@ -4890,7 +4890,7 @@ select {
 @media screen and (max-width: 767px) {
 
 .pagina-categoria .listagem .listagem-item:after, .pagina-busca .listagem .listagem-item:after {
-    top: 60px;
+    top: 60px!important;
 }
 
 
