@@ -66,8 +66,8 @@ $('.atd-top ul.drop-atd').prepend($('.barra-inicial .canais-contato.span9>ul>li'
 $('.pagina-produto #corpo .produto > .row-fluid:first-child > .span6:first-child').append($('.pagina-produto #buy-together-position1'));
 $('.pagina-produto #corpo .produto > .row-fluid:first-child > .span6:first-child').append($('.abas-custom'));
 $('.pagina-produto #corpo .produto > .row-fluid:first-child > .span6:first-child').append($('.pagina-produto #buy-together-position2'));
-$('.pagina-produto #corpo .produto > .row-fluid:first-child > .span6:first-child').append($('.listagem.aproveite-tambem'));
 $('.pagina-produto #corpo .produto > .row-fluid:first-child > .span6:first-child').append($('.konfidency-reviews-details'));
+$('.pagina-produto #corpo .produto > .row-fluid:first-child > .span6:first-child').append($('.listagem.aproveite-tambem'));
 
 });
 }

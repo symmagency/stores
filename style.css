@@ -8197,3 +8197,7 @@ body {
 .tel_rp {
     display: none;
 }
+
+.tab-content:not(:has(#descricao)) {
+    display: none;
+  }
