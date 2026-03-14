@@ -8198,6 +8198,6 @@ body {
     display: none;
 }
 
-.tab-content:not(:has(#descricao)) {
+.pagina-produto .tab-content:not(:has(#descricao)) {
     display: none;
   }
