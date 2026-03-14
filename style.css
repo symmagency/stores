@@ -3902,6 +3902,14 @@ div#telefoneRodape {
     display: none;
 } */
 
+.carrinho-checkout.pagina-carrinho .acao-editar .botao.grande {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .finalizar-compra .caixa-sombreada {
     box-shadow: none;
     border: 0;
