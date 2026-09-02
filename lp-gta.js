@@ -60,7 +60,7 @@
 	var html =
 		'' +
 		'<main id="thGta" class="thgta">' +
-		'<div class="thgta-promo"><div class="thgta-container"><span>PRÉ-VENDA ABERTA — LANÇAMENTO EM 19.11.2026</span><a href="#thgta-comprar">GARANTA O SEU</a></div></div>' +
+		'<div class="thgta-promo"><div class="thgta-container"><span>RECEBA SEU CÓDIGO HOJE E JOGUE NO DIA DO LANÇAMENTO</span><a href="#thgta-comprar">GARANTA O SEU</a></div></div>' +
 		'<section class="thgta-hero" style="--hero:url(' +
 		CONFIG.imagens.hero +
 		')">' +
