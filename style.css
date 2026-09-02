@@ -941,6 +941,7 @@ ul.drop-login li:last-child {
 .menu.superior > .nivel-um {
     text-align: center;
     display: flex;
+    align-items: center;
 }
 
 /* PROMO */

@@ -936,3 +936,32 @@
 		font-size: 14px;
 	}
 }
+
+/* Menu personalizado */
+
+.menu.superior .nivel-um>li.categoria-id-24443218 {
+    background: linear-gradient(90deg, #ffa800, #ffc554);
+    height: fit-content;
+    border-radius: 99px;
+}
+
+li.categoria-id-24443218 strong:before {
+    content: "";
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url(https://cdn.awsli.com.br/1041/1041512/arquivos/logo-gta.png) center no-repeat;
+    background-size: 100%;
+}
+
+li.categoria-id-24443218 strong {
+    padding-right: 32px!important;
+    position: relative;
+}
+
+.menu.superior .nivel-um>li.categoria-id-24443218 > a .titulo {
+    padding: 14px 0;
+}
