@@ -1063,6 +1063,7 @@ $(document).ready(function () {
     $('.cart-resume-coupon').toggleClass('open');
   });
   
+  $(document).ready(function(){
   $('#modalContato .table > tbody').append(`
     <tr>
       <td>
@@ -1076,3 +1077,5 @@ $(document).ready(function () {
       </td>
     </tr>
 `);
+
+});
