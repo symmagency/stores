@@ -1063,3 +1063,16 @@ $(document).ready(function () {
     $('.cart-resume-coupon').toggleClass('open');
   });
   
+  $('#modalContato .table > tbody').append(`
+    <tr>
+      <td>
+        <b>
+          
+          Email:
+        </b>
+      </td>
+      <td>
+        <span class="cor-principal">contato@thkeys.com.br</span>
+      </td>
+    </tr>
+`);
