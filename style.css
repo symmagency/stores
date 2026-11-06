@@ -8215,3 +8215,8 @@ body {
 .pagina-produto .tab-content:not(:has(#descricao)) {
     display: none;
   }
+
+
+  #modalContato .table > tbody > tr:nth-child(3), #modalContato .table > tbody > tr:nth-child(4) {
+    display: none;
+}
