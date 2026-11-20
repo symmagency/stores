@@ -69,7 +69,7 @@
 		CONFIG.imagens.capaPadrao +
 		'" alt="Grand Theft Auto VI"></div>' +
 		'<div class="thgta-buy" id="thgta-comprar">' +
-		'<div class="thgta-buy-head"><i></i><strong>Pré-venda</strong><img src="' +
+		'<div class="thgta-buy-head"><i></i><strong>Garanta o seu!</strong><img src="' +
 		CONFIG.imagens.logoGta +
 		'" alt="GTA VI"></div>' +
 		'<div class="thgta-label">Escolha o seu console</div>' +
@@ -87,7 +87,7 @@
 		CONFIG.imagens.capaPadrao +
 		'" alt=""><span><small>GTA VI</small><b class="js-name">Edição padrão</b><em class="js-meta">Playstation 5 • Código digital</em></span><strong class="js-price-small">R$ 434,90</strong></div>' +
 		'<div class="thgta-price"><strong class="js-price">R$ 434,90</strong><span class="js-installment">em até 2x de R$ 217,45 sem juros</span></div>' +
-		'<a class="thgta-button js-buy" href="https://www.thkeys.com.br/r/jdrycu"><span>Garantir pré-venda</span><b>→</b></a>' +
+		'<a class="thgta-button js-buy" href="https://www.thkeys.com.br/r/jdrycu"><span>Garantir o meu jogo!</span><b>→</b></a>' +
 		'<p class="thgta-safe">⌁ Compra segura e produto 100% original</p>' +
 		'</div>' +
 		'</div>' +
@@ -157,7 +157,7 @@
 		'</div></section>' +
 		'<section class="thgta-final" style="--final:url(' +
 		CONFIG.imagens.final +
-		')"><div class="thgta-final-box"><span>19 DE NOVEMBRO DE 2026</span><h2>VICE CITY NÃO<br>VAI <mark>ESPERAR.</mark></h2><p>Garanta sua pré-venda agora e prepare-se para o lançamento mais esperado da história.</p><a href="#thgta-comprar">Escolher minha edição <b>↑</b></a></div></section>' +
+		')"><div class="thgta-final-box"><span>19 DE NOVEMBRO DE 2026</span><h2>VICE CITY NÃO<br>VAI <mark>ESPERAR.</mark></h2><p>Garanta o seu jogo agora e divirta-se com o lançamento mais esperado da história.</p><a href="#thgta-comprar">Escolher minha edição <b>↑</b></a></div></section>' +
 		'</main>';
 
 	function benefit(n, t, d) {
